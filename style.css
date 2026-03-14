@@ -377,11 +377,11 @@ h1 {
 }
 .hair svg {
   width: 100%;
-  transform: scaleY(2.2) scaleX(1.8) translateY(100px);
   height: 100%;
-  top: -10px;
   position: absolute;
-  stroke-width: 300px;
+  top: 0;
+  left: 0;
+  stroke-width: 700px;
   fill: none;
   stroke: var(--bg-color);
 }
