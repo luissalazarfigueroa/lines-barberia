@@ -311,7 +311,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
     ease: "power2.out",
   });
   // Efecto del botón .btn-lines
-
+  gsap.utils.toArray(".reveal-up").forEach((el) => {
+    gsap.to(el, {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: el,
+        start: "top 88%",
+      },
+    });
+  });
   let intervalId = null;
   const btn = document.querySelector(".btn-lines");
   const left = document.querySelector(".left");
