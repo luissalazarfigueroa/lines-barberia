@@ -60,7 +60,7 @@ p {
 /* ─── SECTION LABEL ──────────────────────────────────────────────────────── */
 .section-label {
   font-family: var(--font-mono);
-  font-size: 11px;
+  font-size: 16px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   opacity: 0.4;
@@ -565,7 +565,7 @@ p {
   height: 100%;
 }
 .testi-text {
-  font-family: var(--font-script);
+  font-family: var(--font-light);
   font-size: clamp(16px, 1.6vw, 20px);
   color: var(--light-color);
   line-height: 1.5;
@@ -707,7 +707,7 @@ p {
   font-family: var(--font-bold);
   font-size: clamp(28px, 5vw, 64px);
   font-variant: all-small-caps;
-  line-height: 1.05;
+  line-height: 0.7;
   color: var(--main-color);
   margin-bottom: 16px;
 }
@@ -1032,8 +1032,8 @@ footer {
   }
 
   .flip-back p {
-    font-size: 24px;
-    line-height: 22px;
+    font-size: 32px;
+    line-height: 28px;
   }
   .flip-back p.first {
     left: -28px;

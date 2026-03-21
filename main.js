@@ -18,6 +18,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const scrollerEl = smoother ? smoother.wrapper() : window;
 
+  // ─── SMOOTH NAV ──────────────────────────────────────────────────────────────
+  // Intercepta todos los <a href="#..."> y delega al smoother
+  // (sin esto el browser scrollea el wrapper nativo y rompe el efecto)
+  const navOffset = 80; // altura del navbar fijo en px
+
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (e) => {
+      const hash = link.getAttribute("href");
+      if (hash === "#") return; // skip enlaces vacíos
+
+      const target = document.querySelector(hash);
+      if (!target) return;
+
+      e.preventDefault();
+
+      // Cierra el menú móvil de Bootstrap si está abierto
+      const collapse = document.querySelector("#navbarNav.show");
+      if (collapse) {
+        bootstrap.Collapse.getInstance(collapse)?.hide();
+      }
+
+      smoother.scrollTo(target, true, `top ${navOffset}px`);
+    });
+  });
+
+  // Marca el nav-link activo según la sección visible
+  const navLinks = document.querySelectorAll(".nav-link");
+  const sections = document.querySelectorAll("section[id]");
+
+  ScrollTrigger.create({
+    scroller: scrollerEl,
+    onUpdate: () => {
+      const scrollY = smoother.scrollTop();
+
+      sections.forEach((section) => {
+        const top = section.offsetTop - navOffset - 10;
+        const bottom = top + section.offsetHeight;
+
+        if (scrollY >= top && scrollY < bottom) {
+          const id = section.getAttribute("id");
+          navLinks.forEach((link) => {
+            link.classList.toggle(
+              "active",
+              link.getAttribute("href") === `#${id}`,
+            );
+          });
+        }
+      });
+    },
+  });
+
   // ─── LOGO COLOR (claro en hero, oscuro al salir) ──────────────────────────────
   const logo = document.querySelector("#logo");
 
