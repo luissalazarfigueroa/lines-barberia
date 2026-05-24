@@ -7,10 +7,26 @@
 
 /* ─── TOKENS ─────────────────────────────────────────────────────────────── */
 :root {
-  --main-color: #494141;
-  --mid-color: #fa9696;
-  --light-color: #d1e2d6;
-  --bg-color: #f1f1f5;
+  /* Paleta Lines — Earth Core */
+  --color-bg-dark:    #1F1F1F;
+  --color-bg-light:   #F4F1EC;
+  --color-bg-beige:   #E6D8C9;
+  --color-primary:    #2F5D5B;
+  --color-primary-dk: #1F3E3D;
+  --color-primary-lt: #4C7C79;
+  --color-support:    #8B6B4F;
+  --color-support-lt: #B08968;
+  --color-support-dk: #5E4632;
+  --color-breath:     #EADFD3;
+  --color-accent:     #B5523C;
+  --color-accent-lt:  #D17A5B;
+  --color-accent-dk:  #7A2E24;
+
+  /* Aliases para compatibilidad con estructura existente */
+  --main-color:  #1F1F1F;
+  --mid-color:   #B5523C;
+  --light-color: #4C7C79;
+  --bg-color:    #F4F1EC;
   --border-radius: 10px;
   --border-box: var(--main-color) 1px solid;
   --font-regular: "Switzer-Regular";
@@ -90,7 +106,7 @@ p {
   text-shadow: none;
 }
 .nav-link.active {
-  color: #fa9696 !important;
+  color: var(--color-accent-lt) !important;
 }
 
 .btn-nav {
@@ -101,7 +117,7 @@ p {
   text-decoration: none;
   border-radius: 999px;
   margin-top: 10px;
-  background: #291d1da8;
+  background: rgba(31,62,61,0.65);
   font-size: 16px;
   text-shadow: none;
 }
@@ -117,7 +133,7 @@ p {
 }
 
 .hero-bg {
-  background-color: rgb(95, 116, 117, 0.5);
+  background-color: rgba(31,62,61,0.5);
   background-blend-mode: multiply;
   position: absolute;
   inset: 0;
@@ -198,7 +214,7 @@ p {
   border: var(--light-color) 2px solid !important;
 }
 .btn-lines:hover {
-  background: rgb(43, 43, 43);
+  background: var(--color-primary-dk);
   color: white;
 }
 
@@ -559,7 +575,7 @@ p {
 }
 
 .testi-card {
-  border: 1px solid rgba(209, 226, 214, 0.15);
+  border: 1px solid rgba(76, 124, 121, 0.15);
   border-radius: var(--border-radius);
   padding: 28px;
   height: 100%;
@@ -582,7 +598,7 @@ p {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid rgba(209, 226, 214, 0.3);
+  border: 1px solid rgba(76, 124, 121, 0.3);
 }
 .testi-name {
   font-family: var(--font-mono);
@@ -607,7 +623,7 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid rgba(209, 226, 214, 0.2);
+  border: 1px solid rgba(76, 124, 121, 0.2);
   border-radius: 999px;
   padding: 8px 18px;
   font-family: var(--font-mono);
@@ -620,8 +636,8 @@ p {
     background 0.2s ease;
 }
 .google-badge:hover {
-  background: rgba(209, 226, 214, 0.08);
-  border-color: rgba(209, 226, 214, 0.4);
+  background: rgba(76, 124, 121, 0.08);
+  border-color: rgba(76, 124, 121, 0.4);
   color: var(--light-color);
 }
 
@@ -783,7 +799,7 @@ p {
 .mapa-wrap {
   border-radius: var(--border-radius);
   overflow: hidden;
-  border: 1px solid rgba(209, 226, 214, 0.15);
+  border: 1px solid rgba(76, 124, 121, 0.15);
   aspect-ratio: 16/9;
 }
 .mapa-wrap iframe {
@@ -798,7 +814,7 @@ p {
   align-items: flex-start;
   gap: 16px;
   padding: 20px 0;
-  border-bottom: 1px solid rgba(209, 226, 214, 0.1);
+  border-bottom: 1px solid rgba(76, 124, 121, 0.1);
 }
 .contact-info-item:last-child {
   border-bottom: none;
@@ -808,7 +824,7 @@ p {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  border: 1px solid rgba(209, 226, 214, 0.2);
+  border: 1px solid rgba(76, 124, 121, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -861,7 +877,7 @@ p {
   gap: 8px;
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid rgba(209, 226, 214, 0.2);
+  border: 1px solid rgba(76, 124, 121, 0.2);
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--light-color);
@@ -872,8 +888,8 @@ p {
     background 0.2s;
 }
 .red-btn:hover {
-  border-color: rgba(209, 226, 214, 0.5);
-  background: rgba(209, 226, 214, 0.05);
+  border-color: rgba(76, 124, 121, 0.5);
+  background: rgba(76, 124, 121, 0.05);
   color: var(--light-color);
 }
 .red-btn svg {
@@ -884,7 +900,7 @@ p {
 
 /* ─── FOOTER ─────────────────────────────────────────────────────────────── */
 footer {
-  background: #1a1212;
+  background: var(--color-bg-dark);
   padding: 48px 0 24px;
 }
 .footer-logo svg {
@@ -931,7 +947,7 @@ footer {
   text-shadow: none;
 }
 .footer-divider {
-  border-color: rgba(209, 226, 214, 0.08);
+  border-color: rgba(76, 124, 121, 0.08);
   margin: 32px 0 20px;
 }
 .footer-bottom {
@@ -994,7 +1010,7 @@ footer {
 @media (max-width: 767px) {
   /* Hero */
   .hero-bg {
-    background-color: rgb(95, 116, 117);
+    background-color: rgb(47,93,91);
     background-blend-mode: multiply;
   }
   .title-hero {
