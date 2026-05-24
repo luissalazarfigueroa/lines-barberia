@@ -1,13 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText);
+  const preloader = document.getElementById("preloader");
+  const fill = document.querySelector(".preloader-fill");
+  const gsap = window.gsap;
+  const ScrollTrigger = window.ScrollTrigger;
+  const ScrollSmoother = window.ScrollSmoother;
+  const ScrollToPlugin = window.ScrollToPlugin;
+  const SplitText = window.SplitText;
+
+  function showRevealElements() {
+    document.querySelectorAll(".reveal-up, .reveal-left, .reveal-right").forEach(el => {
+      el.style.opacity = "1";
+      el.style.transform = "none";
+    });
+  }
+
+  function hidePreloader() {
+    if (preloader) preloader.style.display = "none";
+  }
+
+  function showStaticContent() {
+    if (fill) fill.style.width = "100%";
+    document.body.style.cursor = "auto";
+    const cursor = document.getElementById("cursor");
+    if (cursor) cursor.style.display = "none";
+    hidePreloader();
+    showRevealElements();
+  }
+
+  function initAnchorScroll(scrollToTarget) {
+    document.querySelectorAll("a[href^='#']").forEach(link => {
+      link.addEventListener("click", e => {
+        const hash = link.getAttribute("href");
+        if (hash === "#") return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+
+        if (scrollToTarget) {
+          scrollToTarget(target);
+          return;
+        }
+
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+  }
+
+  function initBasicNav() {
+    const navbar = document.getElementById("navbar");
+    const burger = document.getElementById("navBurger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    let menuOpen = false;
+
+    if (navbar) {
+      const updateNavbar = () => navbar.classList.toggle("scrolled", window.scrollY > 80);
+      updateNavbar();
+      window.addEventListener("scroll", updateNavbar, { passive: true });
+    }
+
+    if (burger && mobileMenu && !burger.dataset.ready) {
+      burger.dataset.ready = "true";
+      burger.addEventListener("click", () => {
+        menuOpen = !menuOpen;
+        mobileMenu.classList.toggle("open", menuOpen);
+        document.body.style.overflow = menuOpen ? "hidden" : "";
+      });
+
+      document.querySelectorAll("[data-mobile-nav]").forEach(a => {
+        a.addEventListener("click", () => {
+          menuOpen = false;
+          mobileMenu.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      });
+    }
+  }
+
+  if (!gsap) {
+    initBasicNav();
+    initAnchorScroll();
+    showStaticContent();
+    return;
+  }
+
+  gsap.registerPlugin(...[ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText].filter(Boolean));
 
   // ─── PRELOADER ────────────────────────────────────────────────────────────
-  const preloader   = document.getElementById("preloader");
-  const fill        = document.querySelector(".preloader-fill");
-
   gsap.timeline({
     onComplete: () => {
-      preloader.style.display = "none";
+      hidePreloader();
       initAll();
     }
   })
@@ -35,86 +116,105 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── MAIN INIT ─────────────────────────────────────────────────────────────
   function initAll() {
-    initSmoother();
-    initNav();
-    initHero();
-    initCounters();
-    initReveals();
-    initServices();
-    initTeam();
-    initGallery();
-    initMethod();
+    [
+      initSmoother,
+      initNav,
+      initHero,
+      initCounters,
+      initReveals,
+      initServices,
+      initTeam,
+      initGallery,
+      initMethod,
+    ].forEach(fn => {
+      try {
+        fn();
+      } catch (error) {
+        console.error(`Error en ${fn.name}:`, error);
+        showStaticContent();
+      }
+    });
+
+    if (ScrollTrigger && typeof ScrollTrigger.refresh === "function") ScrollTrigger.refresh();
   }
 
   // ─── SCROLL SMOOTHER ──────────────────────────────────────────────────────
   function initSmoother() {
-    const smoother = ScrollSmoother.create({
-      wrapper: "#smooth-wrapper",
-      content: "#smooth-content",
-      smooth: 1.4,
-      effects: true,
-    });
+    if (!ScrollSmoother || typeof ScrollSmoother.create !== "function") {
+      initAnchorScroll();
+      return;
+    }
 
-    document.querySelectorAll("a[href^='#']").forEach(link => {
-      link.addEventListener("click", e => {
-        const hash = link.getAttribute("href");
-        if (hash === "#") return;
-        const target = document.querySelector(hash);
-        if (!target) return;
-        e.preventDefault();
-        smoother.scrollTo(target, true, "top 80px");
+    let smoother;
+
+    try {
+      smoother = ScrollSmoother.create({
+        wrapper: "#smooth-wrapper",
+        content: "#smooth-content",
+        smooth: 1.4,
+        effects: true,
       });
-    });
+    } catch (error) {
+      console.warn("ScrollSmoother no pudo iniciar:", error);
+      initAnchorScroll();
+      return;
+    }
+
+    initAnchorScroll(target => smoother.scrollTo(target, true, "top 80px"));
 
     window._smoother = smoother;
   }
 
   // ─── NAVBAR ────────────────────────────────────────────────────────────────
   function initNav() {
-    const navbar     = document.getElementById("navbar");
-    const burger     = document.getElementById("navBurger");
-    const mobileMenu = document.getElementById("mobileMenu");
-    let menuOpen = false;
+    const navbar = document.getElementById("navbar");
+    initBasicNav();
 
-    ScrollTrigger.create({
-      start: "80px top",
-      onEnter:     () => navbar.classList.add("scrolled"),
-      onLeaveBack: () => navbar.classList.remove("scrolled"),
-    });
-
-    burger.addEventListener("click", () => {
-      menuOpen = !menuOpen;
-      mobileMenu.classList.toggle("open", menuOpen);
-      document.body.style.overflow = menuOpen ? "hidden" : "";
-    });
-
-    document.querySelectorAll("[data-mobile-nav]").forEach(a => {
-      a.addEventListener("click", () => {
-        menuOpen = false;
-        mobileMenu.classList.remove("open");
-        document.body.style.overflow = "";
+    if (ScrollTrigger && typeof ScrollTrigger.create === "function" && navbar) {
+      ScrollTrigger.create({
+        start: "80px top",
+        onEnter:     () => navbar.classList.add("scrolled"),
+        onLeaveBack: () => navbar.classList.remove("scrolled"),
       });
-    });
+    }
 
-    gsap.from(navbar, { y: -80, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.1 });
+    if (navbar) {
+      gsap.from(navbar, { y: -80, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.1 });
+    }
   }
 
   // ─── HERO ──────────────────────────────────────────────────────────────────
   function initHero() {
-    gsap.to(".hero-bg", {
-      yPercent: 20,
-      ease: "none",
-      scrollTrigger: {
-        trigger: ".s-hero",
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      }
-    });
+    if (ScrollTrigger && typeof ScrollTrigger.create === "function") {
+      gsap.to(".hero-bg", {
+        yPercent: 20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".s-hero",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+    }
 
     gsap.from(".hero-bg", { scale: 1.18, duration: 2.2, ease: "power3.out" });
 
-    document.fonts.ready.then(() => {
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+
+    fontsReady.then(() => {
+      if (!SplitText || typeof SplitText.create !== "function") {
+        gsap.from("[data-hero-line]", {
+          y: 30,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: "power3.out",
+          delay: 0.3,
+        });
+        return;
+      }
+
       document.querySelectorAll("[data-hero-line]").forEach(line => {
         const split = SplitText.create(line, { type: "chars" });
         gsap.from(split.chars, {
@@ -137,7 +237,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // ─── COUNTERS ──────────────────────────────────────────────────────────────
   function initCounters() {
     document.querySelectorAll("[data-count]").forEach(el => {
-      const target = parseInt(el.dataset.count);
+      const target = parseInt(el.dataset.count, 10);
+
+      if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") {
+        el.textContent = target >= 1000 ? target.toLocaleString("es-CL") : target;
+        return;
+      }
+
       ScrollTrigger.create({
         trigger: el, start: "top 90%", once: true,
         onEnter: () => {
@@ -155,6 +261,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── GENERIC REVEALS ───────────────────────────────────────────────────────
   function initReveals() {
+    if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") {
+      showRevealElements();
+      return;
+    }
+
     gsap.utils.toArray(".reveal-up, .reveal-left, .reveal-right").forEach(el => {
       const isLeft  = el.classList.contains("reveal-left");
       const isRight = el.classList.contains("reveal-right");
@@ -163,8 +274,9 @@ document.addEventListener("DOMContentLoaded", () => {
                  : isRight ? { x:  50, opacity: 0 }
                  :           { y:  50, opacity: 0 };
 
-      gsap.from(el, {
-        ...from, duration: 0.9, ease: "power3.out", delay,
+      gsap.fromTo(el, from, {
+        x: 0, y: 0, opacity: 1,
+        duration: 0.9, ease: "power3.out", delay,
         scrollTrigger: { trigger: el, start: "top 88%" },
       });
     });
@@ -172,9 +284,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── SERVICES ──────────────────────────────────────────────────────────────
   function initServices() {
+    if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") return;
+
     document.querySelectorAll(".service-item").forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0, y: 40, duration: 0.7, delay: i * 0.07,
+      gsap.fromTo(card, { opacity: 0, y: 40 }, {
+        opacity: 1, y: 0, duration: 0.7, delay: i * 0.07,
         ease: "power2.out",
         scrollTrigger: { trigger: card, start: "top 90%" },
       });
@@ -183,9 +297,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── TEAM ──────────────────────────────────────────────────────────────────
   function initTeam() {
+    if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") return;
+
     document.querySelectorAll(".team-card").forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0, y: 60, duration: 0.9, delay: i * 0.12,
+      gsap.fromTo(card, { opacity: 0, y: 60 }, {
+        opacity: 1, y: 0, duration: 0.9, delay: i * 0.12,
         ease: "power3.out",
         scrollTrigger: { trigger: card, start: "top 88%" },
       });
@@ -194,9 +310,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── GALLERY ───────────────────────────────────────────────────────────────
   function initGallery() {
+    if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") return;
+
     document.querySelectorAll(".gallery-item").forEach((item, i) => {
-      gsap.from(item, {
-        opacity: 0, scale: 0.96, duration: 0.9, delay: i * 0.1,
+      gsap.fromTo(item, { opacity: 0, scale: 0.96 }, {
+        opacity: 1, scale: 1, duration: 0.9, delay: i * 0.1,
         ease: "power2.out",
         scrollTrigger: { trigger: item, start: "top 90%" },
       });
@@ -205,15 +323,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── METHODOLOGY ───────────────────────────────────────────────────────────
   function initMethod() {
+    if (!ScrollTrigger || typeof ScrollTrigger.create !== "function") return;
+
     document.querySelectorAll(".method-card").forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0, x: 50, duration: 0.8, delay: i * 0.15,
+      gsap.fromTo(card, { opacity: 0, x: 50 }, {
+        opacity: 1, x: 0, duration: 0.8, delay: i * 0.15,
         ease: "power2.out",
         scrollTrigger: { trigger: card, start: "top 88%" },
       });
     });
 
-    document.fonts.ready.then(() => {
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+
+    fontsReady.then(() => {
+      if (!SplitText || typeof SplitText.create !== "function") return;
+
       const heading = document.querySelector(".method-heading");
       if (!heading) return;
       const split = SplitText.create(heading, { type: "lines" });
