@@ -1,331 +1,274 @@
+import { gsap } from "https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js";
+
 document.addEventListener("DOMContentLoaded", () => {
-  // ─── GSAP PLUGINS ────────────────────────────────────────────────────────────
-  gsap.registerPlugin(
-    ScrollTrigger,
-    ScrollSmoother,
-    ScrollToPlugin,
-    SplitText,
-    DrawSVGPlugin,
-  );
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, ScrollToPlugin, SplitText);
 
-  // ─── SCROLL SMOOTHER ─────────────────────────────────────────────────────────
-  const smoother = ScrollSmoother.create({
-    wrapper: "#smooth-wrapper",
-    content: "#smooth-content",
-    smooth: 1.2,
-    effects: true,
+  // ─── PRELOADER ────────────────────────────────────────────────────────────
+  const preloader   = document.getElementById("preloader");
+  const fill        = document.querySelector(".preloader-fill");
+  const preloaderTl = gsap.timeline({
+    onComplete: () => {
+      preloader.style.pointerEvents = "none";
+      initAll();
+    }
   });
 
-  const scrollerEl = smoother ? smoother.wrapper() : window;
+  preloaderTl
+    .to(fill, { width: "100%", duration: 1.4, ease: "power2.inOut" })
+    .to(preloader, { yPercent: -100, duration: 0.9, ease: "power3.inOut", delay: 0.2 });
 
-  // ─── SMOOTH NAV ──────────────────────────────────────────────────────────────
-  // Intercepta todos los <a href="#..."> y delega al smoother
-  // (sin esto el browser scrollea el wrapper nativo y rompe el efecto)
-  const navOffset = 80; // altura del navbar fijo en px
+  // ─── CURSOR ────────────────────────────────────────────────────────────────
+  const cursorDot  = document.getElementById("cursor-dot");
+  const cursorRing = document.getElementById("cursor-ring");
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
-  document.querySelectorAll('a[href^="#"]').forEach((link) => {
-    link.addEventListener("click", (e) => {
-      const hash = link.getAttribute("href");
-      if (hash === "#") return; // skip enlaces vacíos
+  window.addEventListener("mousemove", e => { mx = e.clientX; my = e.clientY; });
 
-      const target = document.querySelector(hash);
-      if (!target) return;
+  gsap.set([cursorDot, cursorRing], { xPercent: -50, yPercent: -50 });
 
-      e.preventDefault();
+  gsap.ticker.add(() => {
+    gsap.set(cursorDot, { x: mx, y: my });
+    rx = rx + (mx - rx) * 0.12;
+    ry = ry + (my - ry) * 0.12;
+    gsap.set(cursorRing, { x: rx, y: ry });
+  });
 
-      // Cierra el menú móvil de Bootstrap si está abierto
-      const collapse = document.querySelector("#navbarNav.show");
-      if (collapse) {
-        bootstrap.Collapse.getInstance(collapse)?.hide();
-      }
+  document.querySelectorAll("a, button, [data-service], [data-team-card]").forEach(el => {
+    el.addEventListener("mouseenter", () => document.body.classList.add("cursor-hover"));
+    el.addEventListener("mouseleave", () => document.body.classList.remove("cursor-hover"));
+  });
 
-      smoother.scrollTo(target, true, `top ${navOffset}px`);
+  // ─── MAIN INIT ─────────────────────────────────────────────────────────────
+  function initAll() {
+    initSmoother();
+    initNav();
+    initHero();
+    initCounters();
+    initReveals();
+    initServices();
+    initTeam();
+    initGallery();
+    initMethod();
+  }
+
+  // ─── SCROLL SMOOTHER ──────────────────────────────────────────────────────
+  function initSmoother() {
+    const smoother = ScrollSmoother.create({
+      wrapper: "#smooth-wrapper",
+      content: "#smooth-content",
+      smooth: 1.4,
+      effects: true,
+      normalizeScroll: true,
     });
-  });
 
-  // Marca el nav-link activo según la sección visible
-  const navLinks = document.querySelectorAll(".nav-link");
-  const sections = document.querySelectorAll("section[id]");
+    // Smooth nav links
+    document.querySelectorAll("a[href^='#']").forEach(link => {
+      link.addEventListener("click", e => {
+        const hash = link.getAttribute("href");
+        if (hash === "#") return;
+        const target = document.querySelector(hash);
+        if (!target) return;
+        e.preventDefault();
+        smoother.scrollTo(target, true, "top 80px");
+      });
+    });
 
-  ScrollTrigger.create({
-    scroller: scrollerEl,
-    onUpdate: () => {
-      const scrollY = smoother.scrollTop();
+    window._smoother = smoother;
+  }
 
-      sections.forEach((section) => {
-        const top = section.offsetTop - navOffset - 10;
-        const bottom = top + section.offsetHeight;
+  // ─── NAVBAR ────────────────────────────────────────────────────────────────
+  function initNav() {
+    const navbar = document.getElementById("navbar");
+    const burger = document.getElementById("navBurger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    let menuOpen = false;
 
-        if (scrollY >= top && scrollY < bottom) {
-          const id = section.getAttribute("id");
-          navLinks.forEach((link) => {
-            link.classList.toggle(
-              "active",
-              link.getAttribute("href") === `#${id}`,
-            );
+    // Scroll class
+    ScrollTrigger.create({
+      start: "80px top",
+      onEnter:     () => navbar.classList.add("scrolled"),
+      onLeaveBack: () => navbar.classList.remove("scrolled"),
+    });
+
+    // Burger
+    burger.addEventListener("click", () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle("open", menuOpen);
+      document.body.style.overflow = menuOpen ? "hidden" : "";
+    });
+
+    document.querySelectorAll("[data-mobile-nav]").forEach(a => {
+      a.addEventListener("click", () => {
+        menuOpen = false;
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      });
+    });
+
+    // Entrance
+    gsap.from(navbar, { y: -80, opacity: 0, duration: 1.2, ease: "power3.out", delay: 0.1 });
+  }
+
+  // ─── HERO ──────────────────────────────────────────────────────────────────
+  function initHero() {
+    // Parallax BG
+    gsap.to(".hero-bg", {
+      yPercent: 20,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".s-hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true,
+      }
+    });
+
+    // Scale in hero bg on load
+    gsap.from(".hero-bg", { scale: 1.18, duration: 2.2, ease: "power3.out" });
+
+    // Title lines stagger
+    document.fonts.ready.then(() => {
+      const lines = document.querySelectorAll("[data-hero-line]");
+      lines.forEach(line => {
+        const split = SplitText.create(line, { type: "chars" });
+        gsap.from(split.chars, {
+          yPercent: 120,
+          opacity: 0,
+          duration: 1.0,
+          stagger: 0.025,
+          ease: "power4.out",
+          delay: 1.0,
+        });
+      });
+    });
+
+    // Eyebrow + bottom
+    gsap.from([".hero-eyebrow", ".hero-bottom", ".hero-scroll-hint", ".hero-counter"], {
+      opacity: 0,
+      y: 20,
+      duration: 1.0,
+      stagger: 0.12,
+      ease: "power2.out",
+      delay: 1.6,
+    });
+  }
+
+  // ─── COUNTERS ──────────────────────────────────────────────────────────────
+  function initCounters() {
+    document.querySelectorAll("[data-count]").forEach(el => {
+      const target = parseInt(el.dataset.count);
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 90%",
+        once: true,
+        onEnter: () => {
+          gsap.to({ val: 0 }, {
+            val: target,
+            duration: 1.8,
+            ease: "power2.out",
+            onUpdate: function() {
+              const v = Math.round(this.targets()[0].val);
+              el.textContent = target >= 1000 ? v.toLocaleString("es-CL") : v;
+            }
           });
         }
       });
-    },
-  });
-
-  // ─── LOGO COLOR (claro en hero, oscuro al salir) ──────────────────────────────
-  const logo = document.querySelector("#logo");
-
-  gsap.set(logo, { fill: "var(--light-color)" });
-
-  ScrollTrigger.create({
-    trigger: "#nosotros", // primer sección real tras el hero
-    scroller: scrollerEl,
-    start: "top top",
-    onEnter: () =>
-      gsap.to(logo, {
-        fill: "var(--main-color)",
-        duration: 0.2,
-        overwrite: "auto",
-      }),
-    onLeaveBack: () =>
-      gsap.to(logo, {
-        fill: "var(--light-color)",
-        duration: 0.2,
-        overwrite: "auto",
-      }),
-  });
-
-  // ─── LÍNEA HERO (DrawSVG al cargar) ──────────────────────────────────────────
-  gsap.set("#lineaUno", { drawSVG: "0%" });
-  gsap.fromTo(
-    "#lineaUno",
-    { drawSVG: "0%" },
-    { drawSVG: "0% 100%", duration: 2, ease: "power2.out" },
-  );
-
-  // ─── SHAVE SVG RESPONSIVE ────────────────────────────────────────────────────
-  /**
-   * Genera un path SVG de zigzag ondulado que cubre W × H completamente.
-   * Cada pasada es una curva cuadrática suave que alterna dirección.
-   * Las pasadas se conectan con una curva cúbica que "baja" por el lado del muro.
-   */
-  function buildShavePath(W, H) {
-    const passes = Math.max(4, Math.ceil(H / 65));
-    const rowH = H / passes;
-    const strokeWidth = rowH * 1.35;
-    const amp = rowH * 0.3;
-
-    let d = "";
-
-    for (let i = 0; i < passes; i++) {
-      const yC = rowH * (i + 0.5);
-      const toRight = i % 2 === 0;
-      const xA = toRight ? 0 : W;
-      const xB = toRight ? W : 0;
-      const cpY = yC + (toRight ? amp : -amp);
-
-      if (i === 0) {
-        d += `M ${xA} ${yC} `;
-      } else {
-        const prevY = rowH * (i - 0.5);
-        d += `C ${xA} ${prevY + rowH * 0.65}
-              ${xA} ${yC - rowH * 0.25}
-              ${xA} ${yC} `;
-      }
-
-      d += `Q ${W / 2} ${cpY} ${xB} ${yC} `;
-    }
-
-    return { d, strokeWidth };
+    });
   }
 
-  let shaveAnim = null;
+  // ─── GENERIC REVEALS ───────────────────────────────────────────────────────
+  function initReveals() {
+    const items = gsap.utils.toArray(".reveal-up, .reveal-left, .reveal-right");
+    items.forEach(el => {
+      const isLeft  = el.classList.contains("reveal-left");
+      const isRight = el.classList.contains("reveal-right");
+      const delay   = parseFloat(getComputedStyle(el).getPropertyValue("--delay")) || 0;
+      const from = isLeft
+        ? { x: -50, opacity: 0 }
+        : isRight
+        ? { x: 50, opacity: 0 }
+        : { y: 50, opacity: 0 };
 
-  function initShave() {
-    const section = document.getElementById("corteDeBarba");
-    const svg = document.getElementById("shaveSvg");
-    const path = document.getElementById("shave");
-    if (!section || !svg || !path) return;
-
-    const W = section.offsetWidth;
-    const H = section.offsetHeight;
-    if (!W || !H) return;
-
-    const { d, strokeWidth } = buildShavePath(W, H);
-
-    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    path.setAttribute("d", d);
-    path.setAttribute("stroke-width", strokeWidth);
-
-    if (shaveAnim) {
-      shaveAnim.scrollTrigger?.kill();
-      shaveAnim.kill();
-      shaveAnim = null;
-    }
-
-    gsap.set(path, { drawSVG: "0% 0%" });
-
-    shaveAnim = gsap.fromTo(
-      path,
-      { drawSVG: "0% 0%" },
-      {
-        drawSVG: "0% 100%",
-        duration: 3,
-        ease: "linear",
-        scrollTrigger: {
-          trigger: "#corteDeBarba",
-          start: "top 65%",
-          toggleActions: "play none none reverse",
-        },
-      },
-    );
+      gsap.from(el, {
+        ...from,
+        duration: 0.9,
+        ease: "power3.out",
+        delay,
+        scrollTrigger: { trigger: el, start: "top 88%" },
+      });
+    });
   }
 
-  // Resize con debounce de 200 ms
-  let _resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(_resizeTimer);
-    _resizeTimer = setTimeout(() => {
-      ScrollTrigger.refresh();
-      initShave();
-    }, 200);
-  });
-
-  if (document.readyState === "complete") {
-    initShave();
-  } else {
-    window.addEventListener("load", initShave);
+  // ─── SERVICES ──────────────────────────────────────────────────────────────
+  function initServices() {
+    const cards = document.querySelectorAll(".service-item");
+    cards.forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 40,
+        duration: 0.7,
+        delay: i * 0.07,
+        ease: "power2.out",
+        scrollTrigger: { trigger: card, start: "top 90%" },
+      });
+    });
   }
 
-  // ─── LÍNEA DOS (barberos section) ────────────────────────────────────────────
-  gsap.set("#lineaDos", { drawSVG: "0% 0%" });
-  gsap.fromTo(
-    "#lineaDos",
-    { drawSVG: "0% 0%" },
-    {
-      drawSVG: "0% 50%",
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#lineaDos",
-        start: "top 85%",
-        end: "top 60%",
-        toggleActions: "play none none reverse",
-      },
-    },
-  );
+  // ─── TEAM ──────────────────────────────────────────────────────────────────
+  function initTeam() {
+    document.querySelectorAll(".team-card").forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        y: 60,
+        duration: 0.9,
+        delay: i * 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: card, start: "top 88%" },
+      });
+    });
+  }
 
-  // ─── NAV ENTRADA ─────────────────────────────────────────────────────────────
-  gsap.from("nav", { y: -200, duration: 2 });
-  gsap.from(".navbar-brand", { y: -200, duration: 2 });
+  // ─── GALLERY ───────────────────────────────────────────────────────────────
+  function initGallery() {
+    document.querySelectorAll(".gallery-item").forEach((item, i) => {
+      gsap.from(item, {
+        opacity: 0,
+        scale: 0.96,
+        duration: 0.9,
+        delay: i * 0.1,
+        ease: "power2.out",
+        scrollTrigger: { trigger: item, start: "top 90%" },
+      });
+    });
+  }
 
-  // ─── SPLIT TEXT BAJADA ───────────────────────────────────────────────────────
-  if (document.querySelector(".bajada")) {
+  // ─── METHODOLOGY ───────────────────────────────────────────────────────────
+  function initMethod() {
+    document.querySelectorAll(".method-card").forEach((card, i) => {
+      gsap.from(card, {
+        opacity: 0,
+        x: 50,
+        duration: 0.8,
+        delay: i * 0.15,
+        ease: "power2.out",
+        scrollTrigger: { trigger: card, start: "top 88%" },
+      });
+    });
+
+    // Heading split
     document.fonts.ready.then(() => {
-      const splitText = SplitText.create(".bajada", {
-        type: "words,chars,lines",
-      });
-
-      gsap.from(splitText.chars, {
-        scrollTrigger: {
-          trigger: ".bajada",
-          toggleActions: "play reverse play reverse",
-        },
-        x: 60,
-        autoAlpha: 0,
-        ease: "power1.out",
-        stagger: { amount: 0.4 },
+      const heading = document.querySelector(".method-heading");
+      if (!heading) return;
+      const split = SplitText.create(heading, { type: "lines" });
+      gsap.from(split.lines, {
+        opacity: 0,
+        y: 40,
+        duration: 0.8,
+        stagger: 0.12,
+        ease: "power3.out",
+        scrollTrigger: { trigger: heading, start: "top 85%" },
       });
     });
   }
 
-  // ─── FLIP CARDS (barberos) ───────────────────────────────────────────────────
-  const cards = document.querySelectorAll(".flip-card");
-  const triggerEl =
-    document.querySelector(".card-lines")?.parentElement || document.body;
-
-  const flipTl = gsap.timeline({
-    paused: true,
-    defaults: { ease: "power2.out", duration: 0.4 },
-  });
-
-  flipTl
-    .to({}, { duration: 0.25 }) // pequeña pausa antes de empezar
-    .to(cards, {
-      rotateY: 180,
-      stagger: { each: 0.15, from: "random" },
-    });
-
-  ScrollTrigger.create({
-    trigger: triggerEl,
-    start: "top 70%",
-    onEnter: () => flipTl.play(),
-    onLeaveBack: () => flipTl.reverse(),
-  });
-
-  // ─── TARJETAS SUELTAS (parallax) ─────────────────────────────────────────────
-  gsap.from(".card-loose-1", {
-    x: 200,
-    rotate: 4,
-    duration: 1,
-    ease: "power4.out",
-    scrollTrigger: { trigger: ".card-loose-1", scrub: true },
-  });
-  gsap.from(".card-loose-2", {
-    x: -200,
-    rotate: -4,
-    duration: 1,
-    ease: "power4.out",
-    scrollTrigger: { trigger: ".card-loose-2", scrub: true },
-  });
-
-  // ─── HERO ANIMATIONS ─────────────────────────────────────────────────────────
-  gsap.from(".hero-bg", {
-    scale: 1.3,
-    filter: "blur(10px)",
-    duration: 3,
-    ease: "power4.out",
-  });
-  gsap.from("h1", { scale: 0.9, duration: 3, ease: "power2.out" });
-  gsap.from(".btn-lines", {
-    y: 20,
-    delay: 1,
-    duration: 1,
-    ease: "power2.out",
-    autoAlpha: 0,
-  });
-
-  // ─── REVEAL-UP (scroll) ──────────────────────────────────────────────────────
-  gsap.utils.toArray(".reveal-up").forEach((el) => {
-    gsap.to(el, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out",
-      scrollTrigger: { trigger: el, start: "top 88%" },
-    });
-  });
-
-  // ─── BTN-LINES HOVER (tijeras animadas) ──────────────────────────────────────
-  let intervalId = null;
-  const btn = document.querySelector(".btn-lines");
-  const left = document.querySelector(".left");
-  const right = document.querySelector(".right");
-
-  if (!btn || !left || !right) return;
-
-  btn.addEventListener("mouseover", () => {
-    if (intervalId === null) {
-      intervalId = setInterval(() => {
-        left.classList.toggle("active");
-        right.classList.toggle("active");
-      }, 200);
-    }
-  });
-
-  btn.addEventListener("mouseleave", () => {
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-      intervalId = null;
-      left.classList.remove("active");
-      right.classList.remove("active");
-    }
-  });
 });

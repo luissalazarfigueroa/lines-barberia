@@ -3,1028 +3,494 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta
-      name="description"
-      content="Lines Barbería — La experiencia de un buen corte. Av. Ossa 2176, Local 3."
-    />
+    <meta name="description" content="Lines Barbería — La experiencia de un buen corte. Av. Ossa 2176, Local 3." />
     <title>Lines — Barbería</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link rel="stylesheet" href="font/css/switzer.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <!-- ═══════════════════════════ NAV ════════════════════════════════ -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <svg
-            class="mt-3"
-            id="logo"
-            data-name="Capa 3"
-            xmlns="http://www.w3.org/2000/svg"
-            width="200px"
-            viewBox="0 0 711.16 114.85"
-          >
-            <rect
-              class="cls-3"
-              x="213.82"
-              y="23.22"
-              width="12.99"
-              height="65.98"
-              rx="1.49"
-              ry="1.49"
-            />
-            <path
-              class="cls-3"
-              d="M133.84,76.21h-25.16V24.71c0-.82-.67-1.49-1.49-1.49h-10.01c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"
-            />
-            <rect
-              class="cls-3"
-              y="56.56"
-              width="36.14"
-              height="12.99"
-              rx="1.49"
-              ry="1.49"
-            />
-            <rect
-              class="cls-3"
-              x="675.02"
-              y="56.56"
-              width="36.14"
-              height="12.99"
-              rx="1.49"
-              ry="1.49"
-            />
-            <path
-              class="cls-3"
-              d="M489.55,23.22h-36.66c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49h-25.16v-13.18h20.44c.44,0,.8-.36.8-.8v-11.4c0-.44-.36-.8-.8-.8h-20.44v-13.83h25.16c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"
-            />
-            <path
-              class="cls-3"
-              d="M381.06,0l-53.55,64.44c-.38.45-1.11.19-1.11-.4V11.76c0-.82-.67-1.49-1.49-1.49h-16.05c-.82,0-1.49.67-1.49,1.49v101.98c0,1.03,1.29,1.5,1.95.7l51.62-62.12c.38-.45,1.11-.19,1.11.4v52.66c0,.82.67,1.49,1.49,1.49h16.05c.82,0,1.49-.67,1.49-1.49V0l-.04.05.02-.05Z"
-            />
-            <path
-              class="cls-3"
-              d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z"
-            />
+
+    <!-- ══ CURSOR ══ -->
+    <div id="cursor">
+      <div id="cursor-dot"></div>
+      <div id="cursor-ring"></div>
+    </div>
+
+    <!-- ══ PRELOADER ══ -->
+    <div id="preloader">
+      <div class="preloader-inner">
+        <div class="preloader-logo">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.16 114.85">
+            <rect x="213.82" y="23.22" width="12.99" height="65.98" rx="1.49"/>
+            <path d="M133.84,76.21h-25.16V24.71c0-.82-.67-1.49-1.49-1.49h-10.01c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+            <rect y="56.56" width="36.14" height="12.99" rx="1.49"/>
+            <rect x="675.02" y="56.56" width="36.14" height="12.99" rx="1.49"/>
+            <path d="M489.55,23.22h-36.66c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49h-25.16v-13.18h20.44c.44,0,.8-.36.8-.8v-11.4c0-.44-.36-.8-.8-.8h-20.44v-13.83h25.16c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+            <path d="M381.06,0l-53.55,64.44c-.38.45-1.11.19-1.11-.4V11.76c0-.82-.67-1.49-1.49-1.49h-16.05c-.82,0-1.49.67-1.49,1.49v101.98c0,1.03,1.29,1.5,1.95.7l51.62-62.12c.38-.45,1.11-.19,1.11.4v52.66c0,.82.67,1.49,1.49,1.49h16.05c.82,0,1.49-.67,1.49-1.49V0Z"/>
+            <path d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z"/>
           </svg>
-        </a>
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div
-          class="collapse navbar-collapse text-center justify-content-end"
-          id="navbarNav"
-        >
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" href="#">Inicio</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#nosotros">Nosotros</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#servicios">Servicios</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#barberos">Barberos</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#galeria">Galería</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="blog/index.html">Blog</a>
-            </li>
-          </ul>
         </div>
-        <a class="btn-nav" href="#agenda">Agenda</a>
+        <div class="preloader-bar"><div class="preloader-fill"></div></div>
+        <p class="preloader-label">Cargando experiencia</p>
       </div>
+    </div>
+
+    <!-- ══ NAV ══ -->
+    <nav id="navbar">
+      <a class="nav-logo" href="#hero">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.16 114.85">
+          <rect x="213.82" y="23.22" width="12.99" height="65.98" rx="1.49"/>
+          <path d="M133.84,76.21h-25.16V24.71c0-.82-.67-1.49-1.49-1.49h-10.01c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+          <rect y="56.56" width="36.14" height="12.99" rx="1.49"/>
+          <rect x="675.02" y="56.56" width="36.14" height="12.99" rx="1.49"/>
+          <path d="M489.55,23.22h-36.66c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49h-25.16v-13.18h20.44c.44,0,.8-.36.8-.8v-11.4c0-.44-.36-.8-.8-.8h-20.44v-13.83h25.16c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+          <path d="M381.06,0l-53.55,64.44c-.38.45-1.11.19-1.11-.4V11.76c0-.82-.67-1.49-1.49-1.49h-16.05c-.82,0-1.49.67-1.49,1.49v101.98c0,1.03,1.29,1.5,1.95.7l51.62-62.12c.38-.45,1.11-.19,1.11.4v52.66c0,.82.67,1.49,1.49,1.49h16.05c.82,0,1.49-.67,1.49-1.49V0Z"/>
+          <path d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z"/>
+        </svg>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#nosotros" data-nav>Nosotros</a></li>
+        <li><a href="#servicios" data-nav>Servicios</a></li>
+        <li><a href="#metodologia" data-nav>Filosofía</a></li>
+        <li><a href="#barberos" data-nav>Equipo</a></li>
+        <li><a href="#galeria" data-nav>Galería</a></li>
+        <li><a href="#contacto" data-nav>Contacto</a></li>
+      </ul>
+      <a class="nav-cta" href="#agenda">Agenda tu hora</a>
+      <button class="nav-burger" id="navBurger" aria-label="Menú">
+        <span></span><span></span>
+      </button>
     </nav>
+
+    <!-- ══ MOBILE MENU ══ -->
+    <div id="mobileMenu">
+      <ul>
+        <li><a href="#nosotros" data-mobile-nav>Nosotros</a></li>
+        <li><a href="#servicios" data-mobile-nav>Servicios</a></li>
+        <li><a href="#metodologia" data-mobile-nav>Filosofía</a></li>
+        <li><a href="#barberos" data-mobile-nav>Equipo</a></li>
+        <li><a href="#galeria" data-mobile-nav>Galería</a></li>
+        <li><a href="#contacto" data-mobile-nav>Contacto</a></li>
+        <li><a href="#agenda" class="mobile-cta" data-mobile-nav>Agenda tu hora</a></li>
+      </ul>
+    </div>
 
     <div id="smooth-wrapper">
       <div id="smooth-content">
-        <!-- ═══════════════════════ HERO ═══════════════════════════════ -->
-        <section class="s-hero" style="position: relative">
-          <div class="direction" data-speed="0.4">
-            <p>Av. Ossa 2176, Local 3</p>
+
+        <!-- ══════════════════════════ HERO ══════════════════════════════ -->
+        <section id="hero" class="s-hero">
+          <div class="hero-bg" style="background-image:url(img/bg-1.jpg)"></div>
+          <div class="hero-overlay"></div>
+
+          <div class="hero-content">
+            <div class="hero-eyebrow">
+              <span class="hero-tag">Av. Ossa 2176, Local 3</span>
+              <span class="hero-year">Est. 2018</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="hero-line" data-hero-line>La experiencia</span>
+              <span class="hero-line hero-line--script" data-hero-line>de un buen</span>
+              <span class="hero-line hero-line--accent" data-hero-line>corte.</span>
+            </h1>
+
+            <div class="hero-bottom">
+              <p class="hero-sub">En Lines construimos tu identidad.</p>
+              <a class="hero-cta" href="#agenda">
+                <span>Agenda tu hora</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </a>
+            </div>
           </div>
 
-          <div class="sello">
-            <svg
-              id="svg2983"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 159.8 87.18"
-            >
-              <path
-                d="M79.9,0C35.6,0,0,19.71,0,43.59s35.24,43.59,79.9,43.59,79.89-19.71,79.89-43.59c0-23.88-35.67-43.59-79.89-43.59ZM79.82,84.91c-40.76,0-75.64-18.88-75.64-41.34S39.86,1.82,79.82,1.82s75.6,19.28,75.6,41.75c0,22.47-35.11,41.34-75.6,41.34Z"
-              />
-              <path
-                d="M134.08,37.78c-.11-.97-1.81-1.71-7.45-1.05-3.54.41-7.35,1.8-9.69,2.78-.88-.39-1.91-.85-3.13-1.38-28.22-12.35-59.06-13.95-76.04-11.96-9.07,1.06-12.62,3.35-12.25,6.5.37,3.15,2.9,5.43,8.79,5.2,5.9-.22,24.09-3.23,42.36-.66,12.54,1.77,21.64,4.2,27.93,6.31-5.57,1.66-11.33,3.93-14.25,5.2-.78-1.19-1.4-2.99-1.79-4.4-.31-1.12-1.44-1.83-2.58-1.59-16.79,3.56-39,13.35-43.96,16.53-.15,3.79.52,9.23,2.21,14.4,9.41-5.74,35.17-19.77,67.27-27.54,2.23.94,3.61,1.63,4.27,1.87,4.35,1.62,6.3-1.88,6.01-4.34-.06-.52-.18-.94-.4-1.32,1.17-1.48,3.1-2.87,6.41-3.26,4.61-.54,5.33.73,5.33.73,1.74-.2,1.07-1.06.96-2.03Z"
-              />
-            </svg>
+          <div class="hero-scroll-hint">
+            <span>scroll</span>
+            <div class="scroll-line"></div>
           </div>
 
-          <div
-            class="hero-bg"
-            data-speed="0.8"
-            style="background-image: url(img/bg-1.jpg)"
-          ></div>
-
-          <div class="hero-content" style="margin-bottom: 5vh">
-            <div class="container-fluid">
-              <div
-                class="row justify-content-center"
-                data-speed="1.1"
-                style="margin-bottom: 100px"
-              >
-                <div class="col-md-6 text-center">
-                  <h1 class="title-hero mx-auto">
-                    La experiencia <br />
-                    de un buen <span class="text-script">corte</span>
-                  </h1>
-                  <p class="bajada">
-                    En Lines te ayudamos a alcanzar tu estilo
-                  </p>
-                  <a class="btn btn-lines" href="#agenda">
-                    Agenda tu hora
-                    <svg
-                      style="
-                        width: 30px;
-                        margin-left: 2px;
-                        transform: rotate(35deg) translate(5px, 0px);
-                      "
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 30 34"
-                    >
-                      <defs>
-                        <style>
-                          .cls-5 {
-                            fill: #fff;
-                          }
-                        </style>
-                      </defs>
-                      <path
-                        class="cls-5 left"
-                        d="M17.85,0L6.73,19.01c-1.64-.84-3.62-.62-5.04.55-1.97,1.63-2.25,4.54-.63,6.51,1.63,1.97,4.54,2.25,6.51.63s2.25-4.54.63-6.51l11.24-15.56c1.14-1.64.14-3.63-1.59-4.63ZM4.63,25.91c-1.53,0-2.78-1.24-2.78-2.78s1.24-2.78,2.78-2.78,2.78,1.24,2.78,2.78-1.24,2.78-2.78,2.78Z"
-                      />
-                      <path
-                        class="cls-5 right"
-                        d="M21.71,21.03c-1.16-2.28-3.95-3.18-6.22-2.02L4.37,0c-1.73,1-2.72,2.99-1.59,4.63l11.24,15.56c-1.17,1.42-1.39,3.4-.55,5.04,1.16,2.28,3.95,3.18,6.22,2.02,2.28-1.16,3.18-3.95,2.02-6.22ZM17.59,25.91c-1.53,0-2.78-1.24-2.78-2.78s1.24-2.78,2.78-2.78,2.78,1.24,2.78,2.78-1.24,2.78-2.78,2.78Z"
-                      />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-
-              <div
-                class="row justify-content-center"
-                data-speed="0.9"
-                style="align-self: flex-end"
-              >
-                <div class="col-md-4">
-                  <div class="tagline text-center">
-                    <p>encuentra tu línea</p>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 429.68 11.52"
-                    >
-                      <defs>
-                        <style>
-                          .cls-1 {
-                            fill: none;
-                            fill-opacity: 0;
-                            stroke-width: 2px;
-                            stroke: var(--light-color);
-                          }
-                        </style>
-                      </defs>
-                      <path
-                        id="lineaUno"
-                        class="cls-1"
-                        d="M0,8.92c.45.11.97-.03,1.42-.09,3.27-.4,6.5-1.02,9.79-1.34,9.01-.86,18.06-.76,27.06-1.73,5.61-.6,11.21-1.31,16.82-1.97,3.31-.39,6.59-.72,9.86-1.44,2.35-.52,4.66-.6,7.08-.78,3.6-.27,6.89-.2,10.47.69,5.08,1.26,9.91,3.27,14.87,4.94,2.03.69,4.05,1.4,6.17,1.65,2.34.28,4.69.36,7.05.35,6.12-.02,12.17-.05,18.28-.75,9.44-1.08,18.88-2.18,28.37-2.74,4.7-.28,9.57-.69,14.28-.27,2.92.26,5.8.23,8.72.36,4.96.22,9.91.3,14.87.17,6.82-.18,13.65-.87,20.48-.84,2.67.01,5.33.32,7.99.55,3.01.25,6.11.06,9.13.06,2.3,0,4.54-.03,6.83-.22,2.52-.22,5.08-.05,7.6-.07s4.8.3,7.25.58c3.9.46,7.78.49,11.7.65,4.09.16,8.16.21,12.25.22,4.4.01,8.78-.32,13.17-.3,5.02.02,9.91.09,14.88.85,3.96.61,7.94,1.06,11.89,1.76,3.08.55,6.15,1.23,9.26.6,2.33-.47,4.61-1.46,6.81-2.34,2.91-1.17,5.96-1.66,9.03-2.17,4.24-.7,8.52-.94,12.75-1.62,2.1-.33,4.17-.78,6.27-1.06,3.49-.46,7.01-.54,10.51-.7,3.85-.18,7.68-.21,11.53-.21,2.59,0,5.11.02,7.68-.37,3.76-.57,7.46-.78,11.26-.78,5.35,0,10.74.21,16.08-.02,1.93-.08,3.83-.27,5.77-.26.7,0,2.4.34,2.96-.29"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+          <div class="hero-counter">
+            <div class="counter-item">
+              <span class="counter-num" data-count="7">0</span>
+              <span class="counter-label">Años</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-num" data-count="3">0</span>
+              <span class="counter-label">Barberos</span>
+            </div>
+            <div class="counter-item">
+              <span class="counter-num" data-count="12000">0</span>
+              <span class="counter-label">Cortes</span>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════════════════ ABOUT ══════════════════════════════ -->
+        <!-- ══════════════════════════ MARQUEE ═══════════════════════════ -->
+        <div class="marquee-strip" aria-hidden="true">
+          <div class="marquee-track">
+            <span>Corte Clásico</span><span class="sep">—</span>
+            <span>Perfilado de Barba</span><span class="sep">—</span>
+            <span>Degradado</span><span class="sep">—</span>
+            <span>Combo Completo</span><span class="sep">—</span>
+            <span>Afeitado con Navaja</span><span class="sep">—</span>
+            <span>Forging the Core</span><span class="sep">—</span>
+            <span>Corte Clásico</span><span class="sep">—</span>
+            <span>Perfilado de Barba</span><span class="sep">—</span>
+            <span>Degradado</span><span class="sep">—</span>
+            <span>Combo Completo</span><span class="sep">—</span>
+            <span>Afeitado con Navaja</span><span class="sep">—</span>
+            <span>Forging the Core</span><span class="sep">—</span>
+          </div>
+        </div>
+
+        <!-- ══════════════════════════ NOSOTROS ══════════════════════════ -->
         <section id="nosotros" class="s-about">
-          <div class="container">
-            <div class="row align-items-center g-5">
-              <div class="col-lg-5">
-                <div class="about-img-wrap reveal-up">
-                  <img src="img/lines.webp" alt="Interior de Lines Barbería" />
-                  <span class="about-tag">Av. Ossa 2176, Local 3</span>
-                </div>
+          <div class="about-layout">
+            <div class="about-media reveal-left">
+              <div class="about-img-frame">
+                <img src="img/lines.webp" alt="Interior de Lines Barbería" loading="lazy" />
               </div>
-              <div class="col-lg-7">
-                <p class="section-label reveal-up">/ Nuestra historia</p>
-                <div class="about-number reveal-up">Lines</div>
-                <h2 class="about-line reveal-up">
-                  Más que un corte,<br />
-                  una <span class="text-script">experiencia</span>
-                </h2>
-                <p class="about-body reveal-up">
-                  Lines nació en 2018 con una idea simple: que cada persona que
-                  entra por nuestra puerta salga sintiéndose bien. No solo con
-                  el corte, sino con todo lo que rodea el momento.
-                </p>
-                <p class="about-body reveal-up">
-                  Nos tomamos el tiempo de entender qué querés, trabajamos con
-                  productos de calidad y cuidamos cada detalle del espacio. Tres
-                  barberos con estilos distintos pero con la misma línea.
-                </p>
-                <a
-                  class="btn btn-lines d-inline-flex mt-4 reveal-up"
-                  href="#barberos"
-                >
-                  Conoce al equipo
-                </a>
+              <div class="about-badge">
+                <p>Forging<br/>the Core</p>
               </div>
             </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════════════ BARBEROS ═══════════════════════════ -->
-        <section id="barberos" class="s-barberos">
-          <div class="container">
-            <div class="row justify-content-center" style="position: relative">
-              <div class="col-lg-9 text-center z-3">
-                <p class="section-label reveal-up">/ El equipo</p>
-                <h2 class="reveal-up">Tus Barberos</h2>
-                <div class="row cols-4 g-2 mt-3">
-                  <div class="col-md px-5 px-md-2 card-lines">
-                    <div class="flip-card">
-                      <div class="flip-face flip-front">
-                        <img
-                          class="profiles"
-                          src="img/dorsal.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                      <div class="flip-face flip-back">
-                        <p class="z-2 first">Nombre Apellido</p>
-                        <p class="z-2 second">Nombre Apellido</p>
-                        <img
-                          class="profiles"
-                          src="img/profile-1.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md px-5 px-md-2 card-lines">
-                    <div class="flip-card">
-                      <div class="flip-face flip-front">
-                        <img
-                          class="profiles"
-                          src="img/dorsal.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                      <div class="flip-face flip-back">
-                        <p class="z-2 first">Nombre Apellido</p>
-                        <p class="z-2 second">Nombre Apellido</p>
-                        <img
-                          class="profiles"
-                          src="img/profile-2.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md px-5 px-md-2 card-lines">
-                    <div class="flip-card">
-                      <div class="flip-face flip-front">
-                        <img
-                          class="profiles"
-                          src="img/dorsal.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                      <div class="flip-face flip-back">
-                        <p class="z-2 first">Nombre Apellido</p>
-                        <p class="z-2 second">Nombre Apellido</p>
-                        <img
-                          class="profiles"
-                          src="img/profile-3.jpg"
-                          alt="Barbero"
-                        />
-                      </div>
-                    </div>
-                  </div>
+            <div class="about-text">
+              <p class="section-eyebrow reveal-up">/ Nuestra historia</p>
+              <h2 class="about-heading reveal-up">
+                Más que un corte,<br/>
+                <em>una experiencia</em>
+              </h2>
+              <p class="about-body reveal-up">
+                Lines nació en 2018 con una idea simple: que cada persona que entra por nuestra puerta salga sintiéndose bien. No solo con el corte, sino con todo lo que rodea el momento.
+              </p>
+              <p class="about-body reveal-up">
+                Nos tomamos el tiempo de entender qué querés, trabajamos con productos de calidad y cuidamos cada detalle del espacio. Tres barberos con estilos distintos pero con la misma línea.
+              </p>
+              <div class="about-stats reveal-up">
+                <div class="stat">
+                  <strong>Mentalidad</strong>
+                  <p>Dominio emocional + enfoque técnico</p>
                 </div>
-              </div>
-              <img
-                class="profiles card-loose-1 p-0 z-1"
-                src="img/dorsal.jpg"
-                alt=""
-              />
-              <img
-                class="profiles card-loose-2 p-0 z-1"
-                src="img/dorsal.jpg"
-                alt=""
-              />
-            </div>
-
-            <div class="row justify-content-center mt-4">
-              <div class="col-lg-auto text-center">
-                <h3 class="about-line">
-                  Distintas manos, misma <span class="text-script">línea</span>
-                  <svg
-                    width="40"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 75 74"
-                  >
-                    <defs>
-                      <style>
-                        .cls-2 {
-                          stroke: #493636;
-                          stroke-width: 2px;
-                          fill: none;
-                        }
-                      </style>
-                    </defs>
-                    <path
-                      id="lineaDos"
-                      class="cls-2"
-                      d="M.54,68.28c11.78,2.54,24.13,3.66,36.15,2.57,8.92-.81,18.5-3.19,25.09-9.64,6.05-5.92,8.67-15.07,8.68-23.36.02-9.98-4.37-19.4-12.24-25.62s-17.22-7.44-26.66-6.67l.53,1.28c1.05-.97,2.67-1.38,4-1.75,2.19-.61,4.44-1.01,6.69-1.36,5.55-.86,11.18-1.31,16.79-1.62,2.81-.15,5.63-.26,8.45-.28.97,0,.96-1.45,0-1.5-6.53-.32-13.09-.51-19.62-.07-6.19.42-12.31,1.44-18.34,2.91-.48.12-.68.69-.45,1.1,3.67,6.58,6.5,13.56,8.46,20.84.25.93,1.7.54,1.45-.4-1.99-7.39-4.88-14.51-8.61-21.2l-.45,1.1c6.03-1.47,12.14-2.49,18.34-2.89s12.82-.22,19.22.09V.33c-5.5.06-11,.37-16.48.86s-10.63,1.02-15.73,2.42c-1.64.45-3.5.98-4.78,2.17-.46.42-.12,1.33.53,1.28,7.85-.64,15.93.12,22.79,4.29,8.35,5.07,13.77,14.06,14.5,23.77.6,7.98-1.36,17.14-6.62,23.38-5.73,6.8-14.86,9.57-23.39,10.61-12.54,1.54-25.61.37-37.92-2.28-.94-.2-1.34,1.24-.4,1.45h0Z"
-                    />
-                  </svg>
-                </h3>
-                <p>Lines es estándar de calidad</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════════════ PELO ANIMADO + SERVICIOS ══════════ -->
-        <section
-          id="corteDeBarba"
-          style="position: relative; min-height: fit-content; padding: 0"
-        >
-          <div class="hair">
-            <svg
-              id="shaveSvg"
-              xmlns="http://www.w3.org/2000/svg"
-              preserveAspectRatio="none"
-            >
-              <path id="shave" fill="none" />
-            </svg>
-            <div class="hair-texture" style="background: url(img/hair.png)">
-              <div class="gradient-hair"></div>
-            </div>
-          </div>
-
-          <div id="servicios" class="container py-5">
-            <p class="section-label reveal-up">/ Lo que hacemos</p>
-            <h2 class="reveal-up">Servicios</h2>
-
-            <div class="row g-3 mt-3">
-              <div class="col-md-8">
-                <div class="service-card">
-                  <span class="service-num">01</span>
-                  <h3>Corte Clásico</h3>
-                  <p>
-                    El corte de siempre, bien ejecutado. Tijera o máquina, con
-                    lavado y secado incluido.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">$12.000</span>
-                    <span class="service-duration">45 min</span>
-                  </div>
+                <div class="stat">
+                  <strong>Observación</strong>
+                  <p>Leer la estructura antes de ejecutar</p>
                 </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="service-card">
-                  <span class="service-num">02</span>
-                  <h3>Perfilado de Barba</h3>
-                  <p>Definición de líneas, recorte y arreglo con navaja.</p>
-                  <div class="service-meta">
-                    <span class="service-price">$8.000</span>
-                    <span class="service-duration">30 min</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="service-card">
-                  <span class="service-num">03</span>
-                  <h3>Degradado</h3>
-                  <p>
-                    Fade suave o marcado, según tu estilo. Acabado impecable.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">$14.000</span>
-                    <span class="service-duration">50 min</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-8">
-                <div class="service-card">
-                  <span class="service-num">04</span>
-                  <h3>Combo Completo</h3>
-                  <p>
-                    Corte + barba + lavado + producto final. La experiencia
-                    Lines completa para los que quieren llegar al trabajo
-                    impecables.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">$18.000</span>
-                    <span class="service-duration">75 min</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-8">
-                <div class="service-card">
-                  <span class="service-num">05</span>
-                  <h3>Afeitado con Navaja</h3>
-                  <p>
-                    Ritual completo: toalla caliente, espuma, navaja y aceite
-                    post-afeitado. Barbería clásica en su máxima expresión.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">$16.000</span>
-                    <span class="service-duration">60 min</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="service-card">
-                  <span class="service-num">06</span>
-                  <h3>Niños</h3>
-                  <p>Corte para los más chicos, con paciencia y buen pulso.</p>
-                  <div class="service-meta">
-                    <span class="service-price">$8.000</span>
-                    <span class="service-duration">30 min</span>
-                  </div>
+                <div class="stat">
+                  <strong>Precisión</strong>
+                  <p>Control técnico, resultados consistentes</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════════════════ GALERÍA ════════════════════════════ -->
-        <section id="galeria">
-          <div class="container">
-            <div class="row align-items-end mb-4">
-              <div class="col">
-                <p class="section-label reveal-up">/ Portfolio</p>
-                <h2 class="reveal-up">Galería</h2>
+        <!-- ══════════════════════════ SERVICIOS ═════════════════════════ -->
+        <section id="servicios" class="s-services">
+          <div class="services-header">
+            <p class="section-eyebrow reveal-up">/ Lo que hacemos</p>
+            <h2 class="services-title reveal-up">Servicios</h2>
+          </div>
+
+          <div class="services-grid">
+            <div class="service-item reveal-up" data-service>
+              <div class="service-num">01</div>
+              <div class="service-info">
+                <h3>Corte Clásico</h3>
+                <p>El corte de siempre, bien ejecutado. Tijera o máquina, con lavado y secado incluido.</p>
               </div>
-              <div class="col-auto">
-                <a
-                  href="#"
-                  class="btn-lines btn d-none d-md-inline-flex reveal-up"
-                  >Ver Instagram</a
-                >
+              <div class="service-meta">
+                <span class="price">$12.000</span>
+                <span class="dur">45 min</span>
               </div>
             </div>
 
-            <div class="gallery-grid">
-              <div class="gallery-item gi-1 reveal-up">
-                <img src="img/profile-1.jpg" alt="Corte Lines" />
+            <div class="service-item reveal-up" data-service>
+              <div class="service-num">02</div>
+              <div class="service-info">
+                <h3>Perfilado de Barba</h3>
+                <p>Definición de líneas, recorte y arreglo con navaja.</p>
               </div>
-              <div class="gallery-item gi-2 reveal-up">
-                <img src="img/dorsal.jpg" alt="Corte Lines" />
-              </div>
-              <div class="gallery-item gi-3 reveal-up">
-                <img src="img/profile-2.jpg" alt="Corte Lines" />
-              </div>
-              <div class="gallery-item gi-4 reveal-up">
-                <img src="img/profile-3.jpg" alt="Corte Lines" />
-              </div>
-              <div class="gallery-item gi-5 reveal-up">
-                <img src="img/bg-1.jpg" alt="Interior Lines" />
-              </div>
-              <div class="gallery-item gi-6 reveal-up">
-                <img src="img/profile-1.jpg" alt="Corte Lines" />
+              <div class="service-meta">
+                <span class="price">$8.000</span>
+                <span class="dur">30 min</span>
               </div>
             </div>
 
-            <div class="text-center mt-4 d-md-none">
-              <a href="#" class="btn btn-lines reveal-up">Ver Instagram</a>
+            <div class="service-item reveal-up" data-service>
+              <div class="service-num">03</div>
+              <div class="service-info">
+                <h3>Degradado</h3>
+                <p>Fade suave o marcado según tu estilo. Acabado impecable.</p>
+              </div>
+              <div class="service-meta">
+                <span class="price">$14.000</span>
+                <span class="dur">50 min</span>
+              </div>
+            </div>
+
+            <div class="service-item service-item--featured reveal-up" data-service>
+              <div class="service-num">04</div>
+              <div class="service-info">
+                <h3>Combo Completo</h3>
+                <p>Corte + barba + lavado + producto final. La experiencia Lines completa.</p>
+              </div>
+              <div class="service-meta">
+                <span class="price">$18.000</span>
+                <span class="dur">75 min</span>
+              </div>
+              <span class="service-badge">Recomendado</span>
+            </div>
+
+            <div class="service-item reveal-up" data-service>
+              <div class="service-num">05</div>
+              <div class="service-info">
+                <h3>Afeitado con Navaja</h3>
+                <p>Ritual completo: toalla caliente, espuma, navaja y aceite post-afeitado.</p>
+              </div>
+              <div class="service-meta">
+                <span class="price">$16.000</span>
+                <span class="dur">60 min</span>
+              </div>
+            </div>
+
+            <div class="service-item reveal-up" data-service>
+              <div class="service-num">06</div>
+              <div class="service-info">
+                <h3>Corte Niños</h3>
+                <p>Para los más chicos, con paciencia y buen pulso.</p>
+              </div>
+              <div class="service-meta">
+                <span class="price">$8.000</span>
+                <span class="dur">30 min</span>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════════════════ TESTIMONIOS ════════════════════════ -->
-        <section id="testimonios" class="s-testimonios">
-          <div class="container">
-            <div class="row align-items-end mb-5">
-              <div class="col">
-                <p
-                  class="section-label reveal-up"
-                  style="color: var(--light-color)"
-                >
-                  / Lo que dicen
-                </p>
-                <h2 class="reveal-up">Testimonios</h2>
-              </div>
-              <div class="col-auto">
-                <a
-                  href="https://g.page/r/"
-                  class="google-badge reveal-up"
-                  target="_blank"
-                >
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                      fill="#4285F4"
-                    />
-                    <path
-                      d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                      fill="#34A853"
-                    />
-                    <path
-                      d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"
-                      fill="#FBBC05"
-                    />
-                    <path
-                      d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                      fill="#EA4335"
-                    />
-                  </svg>
-                  4.8 · +120 reseñas
-                </a>
-              </div>
+        <!-- ══════════════════════════ METODOLOGÍA ═══════════════════════ -->
+        <section id="metodologia" class="s-method">
+          <div class="method-sticky-container">
+            <div class="method-sticky-text">
+              <p class="section-eyebrow">/ Filosofía</p>
+              <h2 class="method-heading">Forging<br/><em>The Core</em></h2>
+              <p class="method-intro">Cada decisión define nuestra creación. Nuestra filosofía nace del propósito de construir una identidad; se organiza, se proyecta y evoluciona.</p>
             </div>
-
-            <div class="row g-3">
-              <div class="col-md-4">
-                <div class="testi-card reveal-up">
-                  <div class="testi-stars">★★★★★</div>
-                  <p class="testi-text">
-                    "Llevo tres años yendo a Lines y nunca me han fallado. El
-                    ambiente, la atención y el resultado siempre son top."
-                  </p>
-                  <div class="testi-author">
-                    <img
-                      class="testi-avatar"
-                      src="img/profile-1.jpg"
-                      alt="Cliente"
-                    />
-                    <div>
-                      <div class="testi-name">Matías González</div>
-                      <div class="testi-role">Cliente desde 2021</div>
-                    </div>
-                  </div>
+            <div class="method-cards">
+              <div class="method-card" data-method="0">
+                <div class="method-card-inner">
+                  <span class="method-icon">—</span>
+                  <h3>Metodología EDC</h3>
+                  <p>Dominar conceptos clave para tomar decisiones conscientes al crear. Parte de nuestros criterios estéticos y de la lectura del cliente como un personaje: qué transmite, cuál es su historia y qué identidad proyecta.</p>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="testi-card reveal-up">
-                  <div class="testi-stars">★★★★★</div>
-                  <p class="testi-text">
-                    "El fade que me hicieron la semana pasada quedó perfecto.
-                    Fui por primera vez y ya tengo la próxima cita agendada."
-                  </p>
-                  <div class="testi-author">
-                    <img
-                      class="testi-avatar"
-                      src="img/profile-2.jpg"
-                      alt="Cliente"
-                    />
-                    <div>
-                      <div class="testi-name">Sebastián Muñoz</div>
-                      <div class="testi-role">Cliente desde 2023</div>
-                    </div>
-                  </div>
+              <div class="method-card" data-method="1">
+                <div class="method-card-inner">
+                  <span class="method-icon">△</span>
+                  <h3>Diseño · Matemática · Arquitectura</h3>
+                  <p>Tres puntos clave para entender de qué se componen y originan nuestros fundamentos. El plano, los ángulos y la elevación como herramientas técnicas al momento de crear cortes.</p>
                 </div>
               </div>
-              <div class="col-md-4">
-                <div class="testi-card reveal-up">
-                  <div class="testi-stars">★★★★★</div>
-                  <p class="testi-text">
-                    "El local tiene una vibra increíble. Música buena, trato
-                    bueno y salen impecables. No me voy a ninguna otra parte."
-                  </p>
-                  <div class="testi-author">
-                    <img
-                      class="testi-avatar"
-                      src="img/profile-3.jpg"
-                      alt="Cliente"
-                    />
-                    <div>
-                      <div class="testi-name">Rodrigo Vera</div>
-                      <div class="testi-role">Cliente desde 2022</div>
-                    </div>
-                  </div>
+              <div class="method-card" data-method="2">
+                <div class="method-card-inner">
+                  <span class="method-icon">○</span>
+                  <h3>Plano · Ángulos · Elevación</h3>
+                  <p>El plano define la dirección del corte (horizontal, vertical o diagonal). Los ángulos determinan texturas y pesos. La elevación controla la forma, el peso y la silueta del resultado final.</p>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════════════════ BLOG PREVIEW ═══════════════════════ -->
-        <section id="blog">
-          <div class="container">
-            <div class="row align-items-end mb-4">
-              <div class="col">
-                <p class="section-label reveal-up">/ Tips &amp; tendencias</p>
-                <h2 class="reveal-up">El Blog</h2>
-              </div>
-              <div class="col-auto">
-                <a
-                  href="blog/index.html"
-                  class="btn btn-lines d-none d-md-inline-flex reveal-up"
-                  >Ver todos</a
-                >
-              </div>
-            </div>
+        <!-- ══════════════════════════ BARBEROS ══════════════════════════ -->
+        <section id="barberos" class="s-team">
+          <div class="team-header">
+            <p class="section-eyebrow reveal-up">/ El equipo</p>
+            <h2 class="team-heading reveal-up">Tus Barberos</h2>
+          </div>
 
-            <div class="row g-3">
-              <div class="col-md-5">
-                <a
-                  href="blog/diferencia-fade-taper.html"
-                  class="blog-card reveal-up"
-                >
-                  <div class="blog-card-img">
-                    <img
-                      src="img/profile-1.jpg"
-                      style="height: 100%; width: 100%"
-                      alt="Fade vs Taper"
-                    />
-                  </div>
-                  <div class="blog-card-body">
-                    <p class="blog-cat">Técnica</p>
-                    <h4>
-                      Fade vs Taper: ¿cuál es la diferencia y cuál te queda
-                      mejor?
-                    </h4>
-                    <p>
-                      Dos de los cortes más pedidos en la barbería, y la mayoría
-                      los confunde. Te explicamos todo.
-                    </p>
-                  </div>
-                </a>
-              </div>
-              <div class="col-md-7">
-                <div class="row g-3 h-100">
-                  <div class="col-12">
-                    <a
-                      href="blog/cuidar-barba-en-casa.html"
-                      class="blog-card reveal-up"
-                    >
-                      <div class="row g-0 h-100">
-                        <div class="col-5">
-                          <div
-                            class="blog-card-img"
-                            style="height: 100%; width: 100%"
-                          >
-                            <img src="img/profile-2.jpg" alt="Barba en casa" />
-                          </div>
-                        </div>
-                        <div class="col-7">
-                          <div class="blog-card-body">
-                            <p class="blog-cat">Productos</p>
-                            <h4>Cómo mantener tu barba entre visitas</h4>
-                            <p>
-                              Los tres productos que necesitás y cómo usarlos.
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
-                  <div class="col-12">
-                    <a
-                      href="blog/tendencias-2026.html"
-                      class="blog-card reveal-up"
-                    >
-                      <div class="row g-0 h-100">
-                        <div class="col-5">
-                          <div
-                            class="blog-card-img"
-                            style="height: 100%; width: 100%"
-                          >
-                            <img
-                              src="img/profile-3.jpg"
-                              alt="Tendencias 2026"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-7">
-                          <div class="blog-card-body">
-                            <p class="blog-cat">Tendencias</p>
-                            <h4>Los cortes que van a dominar el 2026</h4>
-                            <p>Lo que están pidiendo los clientes este año.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </a>
-                  </div>
+          <div class="team-grid">
+            <div class="team-card reveal-up" data-team-card>
+              <div class="team-card-img">
+                <img src="img/dorsal.jpg" alt="Barbero Lines" loading="lazy" />
+                <div class="team-card-hover">
+                  <img src="img/profile-1.jpg" alt="Barbero Lines" loading="lazy" />
                 </div>
               </div>
+              <div class="team-card-info">
+                <h3>Nombre Apellido</h3>
+                <p>Especialista en degradados y cortes modernos</p>
+              </div>
             </div>
+            <div class="team-card reveal-up" data-team-card style="--delay:0.1s">
+              <div class="team-card-img">
+                <img src="img/dorsal.jpg" alt="Barbero Lines" loading="lazy" />
+                <div class="team-card-hover">
+                  <img src="img/profile-2.jpg" alt="Barbero Lines" loading="lazy" />
+                </div>
+              </div>
+              <div class="team-card-info">
+                <h3>Nombre Apellido</h3>
+                <p>Maestro del afeitado clásico y la navaja</p>
+              </div>
+            </div>
+            <div class="team-card reveal-up" data-team-card style="--delay:0.2s">
+              <div class="team-card-img">
+                <img src="img/dorsal.jpg" alt="Barbero Lines" loading="lazy" />
+                <div class="team-card-hover">
+                  <img src="img/profile-3.jpg" alt="Barbero Lines" loading="lazy" />
+                </div>
+              </div>
+              <div class="team-card-info">
+                <h3>Nombre Apellido</h3>
+                <p>Experto en barba y diseño de líneas</p>
+              </div>
+            </div>
+          </div>
 
-            <div class="text-center mt-4 d-md-none">
-              <a href="blog/index.html" class="btn btn-lines reveal-up"
-                >Ver todos los artículos</a
-              >
-            </div>
+          <div class="team-tagline reveal-up">
+            <p>Distintas manos, misma <em>línea</em></p>
           </div>
         </section>
 
-        <!-- ═══════════════════════ AGENDA CTA ═════════════════════════ -->
-        <section id="agenda" class="s-agenda">
-          <div class="container text-center">
-            <p class="section-label reveal-up">/ Reserva tu hora</p>
-            <h2 class="agenda-title reveal-up">
-              ¿Listo para tu<br />próximo
-              <span class="text-script">corte?</span>
-            </h2>
-            <p class="agenda-sub reveal-up">
-              Elige tu barbero, el día y la hora. En menos de dos minutos.
-            </p>
-            <a
-              href="https://booksy.com"
-              target="_blank"
-              class="btn-agenda-big reveal-up"
-            >
-              Reservar hora
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+        <!-- ══════════════════════════ GALERÍA ═══════════════════════════ -->
+        <section id="galeria" class="s-gallery">
+          <div class="gallery-header">
+            <p class="section-eyebrow reveal-up">/ Portfolio</p>
+            <h2 class="gallery-title reveal-up">Galería</h2>
+          </div>
+          <div class="gallery-grid">
+            <div class="gallery-item gallery-item--tall reveal-up" data-cursor-text="Ver">
+              <img src="img/bg-1.jpg" alt="Trabajo Lines" loading="lazy" />
+            </div>
+            <div class="gallery-item reveal-up" data-cursor-text="Ver" style="--delay:0.1s">
+              <img src="img/img-1.png" alt="Trabajo Lines" loading="lazy" />
+            </div>
+            <div class="gallery-item reveal-up" data-cursor-text="Ver" style="--delay:0.15s">
+              <img src="img/img-2.png" alt="Trabajo Lines" loading="lazy" />
+            </div>
+            <div class="gallery-item gallery-item--wide reveal-up" data-cursor-text="Ver" style="--delay:0.2s">
+              <img src="img/bg-2.jpg" alt="Trabajo Lines" loading="lazy" />
+            </div>
+          </div>
+          <div class="gallery-cta reveal-up">
+            <a href="https://instagram.com/linesbarberia" target="_blank" class="gallery-ig-btn">
+              Ver más en Instagram
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
+          </div>
+        </section>
 
-            <div class="horarios-grid reveal-up">
-              <div class="horario-item">
-                <div class="horario-dia">Lun – Vie</div>
-                <div class="horario-hora">10:00 – 20:00</div>
-              </div>
-              <div class="horario-item">
-                <div class="horario-dia">Sábado</div>
-                <div class="horario-hora">10:00 – 18:00</div>
-              </div>
-              <div class="horario-item">
-                <div class="horario-dia">Domingo</div>
-                <div class="horario-cerrado">Cerrado</div>
-              </div>
+        <!-- ══════════════════════════ AGENDA ════════════════════════════ -->
+        <section id="agenda" class="s-agenda">
+          <div class="agenda-inner">
+            <p class="section-eyebrow reveal-up">/ Reservas</p>
+            <h2 class="agenda-heading reveal-up">Agenda tu hora</h2>
+            <p class="agenda-sub reveal-up">Elige tu barbero y el servicio que quieras. Te esperamos.</p>
+            <a class="agenda-btn reveal-up" href="https://wa.me/56912345678" target="_blank">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              Agendar vía WhatsApp
+            </a>
+          </div>
+          <div class="agenda-bg-text" aria-hidden="true">LINES</div>
+        </section>
+
+        <!-- ══════════════════════════ CONTACTO ══════════════════════════ -->
+        <section id="contacto" class="s-contact">
+          <div class="contact-layout">
+            <div class="contact-info reveal-left">
+              <p class="section-eyebrow">/ Encuéntranos</p>
+              <h2 class="contact-heading">Estamos<br/><em>aquí</em></h2>
+              <ul class="contact-list">
+                <li>
+                  <span class="contact-icon">◉</span>
+                  <div>
+                    <strong>Dirección</strong>
+                    <p>Av. Ossa 2176, Local 3</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="contact-icon">◎</span>
+                  <div>
+                    <strong>Teléfono</strong>
+                    <p><a href="tel:+56912345678">+56 9 1234 5678</a></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="contact-icon">◉</span>
+                  <div>
+                    <strong>Email</strong>
+                    <p><a href="mailto:hola@linesbarberia.cl">hola@linesbarberia.cl</a></p>
+                  </div>
+                </li>
+                <li>
+                  <span class="contact-icon">◎</span>
+                  <div>
+                    <strong>Instagram</strong>
+                    <p><a href="https://instagram.com/linesbarberia" target="_blank">@linesbarberia</a></p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="contact-map reveal-right">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.8!2d-70.5785!3d-33.4569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI3JzI0LjgiUyA3MMKwMzQnNDIuNiJX!5e0!3m2!1ses!2scl!4v1620000000000"
+                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                title="Ubicación Lines Barbería">
+              </iframe>
             </div>
           </div>
         </section>
 
-        <!-- ═══════════════════════ CONTACTO ════════════════════════════ -->
-        <section id="contacto" class="s-contacto">
-          <div class="container">
-            <div class="row g-5 align-items-start">
-              <div class="col-lg-5">
-                <p
-                  class="section-label reveal-up"
-                  style="color: var(--light-color)"
-                >
-                  / Dónde encontrarnos
-                </p>
-                <h2 class="reveal-up">Contacto</h2>
-
-                <div class="contact-info-item reveal-up">
-                  <div class="contact-icon">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                      />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="contact-label">Dirección</div>
-                    <div class="contact-value">
-                      Av. Ossa 2176, Local 3<br />La Reina, Santiago
-                    </div>
-                  </div>
-                </div>
-
-                <div class="contact-info-item reveal-up">
-                  <div class="contact-icon">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9A16 16 0 0 0 15 15.91l1.27-.85a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
-                      />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="contact-label">Teléfono / WhatsApp</div>
-                    <div class="contact-value">
-                      <a href="https://wa.me/56912345678">+56 9 1234 5678</a>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="contact-info-item reveal-up">
-                  <div class="contact-icon">
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-                      />
-                      <polyline points="22,6 12,13 2,6" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="contact-label">Email</div>
-                    <div class="contact-value">
-                      <a href="mailto:hola@linesbarberia.cl"
-                        >hola@linesbarberia.cl</a
-                      >
-                    </div>
-                  </div>
-                </div>
-
-                <div class="redes-row reveal-up">
-                  <a
-                    href="https://instagram.com/linesbarberia"
-                    target="_blank"
-                    class="red-btn"
-                  >
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                      />
-                    </svg>
-                    @linesbarberia
-                  </a>
-                  <a
-                    href="https://wa.me/56912345678"
-                    target="_blank"
-                    class="red-btn"
-                  >
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                      <path
-                        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                      />
-                    </svg>
-                    WhatsApp
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-lg-7">
-                <div class="mapa-wrap reveal-up">
-                  <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3329.8!2d-70.5785!3d-33.4569!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzPCsDI3JzI0LjgiUyA3MMKwMzQnNDIuNiJX!5e0!3m2!1ses!2scl!4v1620000000000"
-                    allowfullscreen=""
-                    loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"
-                    title="Ubicación Lines Barbería"
-                  ></iframe>
-                </div>
-              </div>
+        <!-- ══════════════════════════ FOOTER ════════════════════════════ -->
+        <footer class="site-footer">
+          <div class="footer-top">
+            <div class="footer-logo-wrap">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 711.16 114.85">
+                <rect x="213.82" y="23.22" width="12.99" height="65.98" rx="1.49"/>
+                <path d="M133.84,76.21h-25.16V24.71c0-.82-.67-1.49-1.49-1.49h-10.01c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+                <rect y="56.56" width="36.14" height="12.99" rx="1.49"/>
+                <rect x="675.02" y="56.56" width="36.14" height="12.99" rx="1.49"/>
+                <path d="M489.55,23.22h-36.66c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49h-25.16v-13.18h20.44c.44,0,.8-.36.8-.8v-11.4c0-.44-.36-.8-.8-.8h-20.44v-13.83h25.16c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"/>
+                <path d="M381.06,0l-53.55,64.44c-.38.45-1.11.19-1.11-.4V11.76c0-.82-.67-1.49-1.49-1.49h-16.05c-.82,0-1.49.67-1.49,1.49v101.98c0,1.03,1.29,1.5,1.95.7l51.62-62.12c.38-.45,1.11-.19,1.11.4v52.66c0,.82.67,1.49,1.49,1.49h16.05c.82,0,1.49-.67,1.49-1.49V0Z"/>
+                <path d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z"/>
+              </svg>
+              <p>La experiencia de un buen corte</p>
+            </div>
+            <nav class="footer-nav">
+              <ul>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#metodologia">Filosofía</a></li>
+                <li><a href="#barberos">Equipo</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+              </ul>
+            </nav>
+            <div class="footer-social">
+              <a href="https://instagram.com/linesbarberia" target="_blank" aria-label="Instagram">
+                <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+              </a>
+              <a href="https://wa.me/56912345678" target="_blank" aria-label="WhatsApp">
+                <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+              </a>
             </div>
           </div>
-        </section>
-
-        <!-- ═══════════════════════ FOOTER ══════════════════════════════ -->
-        <footer>
-          <div class="container">
-            <div class="row g-4">
-              <div class="col-lg-4">
-                <div class="footer-logo">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 711.16 114.85"
-                  >
-                    <rect
-                      x="213.82"
-                      y="23.22"
-                      width="12.99"
-                      height="65.98"
-                      rx="1.49"
-                    />
-                    <path
-                      d="M133.84,76.21h-25.16V24.71c0-.82-.67-1.49-1.49-1.49h-10.01c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"
-                    />
-                    <rect y="56.56" width="36.14" height="12.99" rx="1.49" />
-                    <rect
-                      x="675.02"
-                      y="56.56"
-                      width="36.14"
-                      height="12.99"
-                      rx="1.49"
-                    />
-                    <path
-                      d="M489.55,23.22h-36.66c-.82,0-1.49.67-1.49,1.49v63c0,.82.67,1.49,1.49,1.49h36.66c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49h-25.16v-13.18h20.44c.44,0,.8-.36.8-.8v-11.4c0-.44-.36-.8-.8-.8h-20.44v-13.83h25.16c.82,0,1.49-.67,1.49-1.49v-10.01c0-.82-.67-1.49-1.49-1.49Z"
-                    />
-                    <path
-                      d="M381.06,0l-53.55,64.44c-.38.45-1.11.19-1.11-.4V11.76c0-.82-.67-1.49-1.49-1.49h-16.05c-.82,0-1.49.67-1.49,1.49v101.98c0,1.03,1.29,1.5,1.95.7l51.62-62.12c.38-.45,1.11-.19,1.11.4v52.66c0,.82.67,1.49,1.49,1.49h16.05c.82,0,1.49-.67,1.49-1.49V0Z"
-                    />
-                    <path
-                      d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z"
-                    />
-                  </svg>
-                </div>
-                <p class="footer-tagline">La experiencia de un buen corte</p>
-              </div>
-
-              <div class="col-6 col-lg-2 offset-lg-1">
-                <p class="footer-col-title">Navegación</p>
-                <ul class="footer-links">
-                  <li><a href="#nosotros">Nosotros</a></li>
-                  <li><a href="#barberos">Barberos</a></li>
-                  <li><a href="#servicios">Servicios</a></li>
-                  <li><a href="#galeria">Galería</a></li>
-                  <li><a href="#agenda">Agenda</a></li>
-                </ul>
-              </div>
-
-              <div class="col-6 col-lg-2">
-                <p class="footer-col-title">Contenido</p>
-                <ul class="footer-links">
-                  <li><a href="blog/index.html">Blog</a></li>
-                  <li><a href="blog/index.html#tecnica">Técnica</a></li>
-                  <li><a href="blog/index.html#productos">Productos</a></li>
-                  <li><a href="blog/index.html#tendencias">Tendencias</a></li>
-                </ul>
-              </div>
-
-              <div class="col-lg-3">
-                <p class="footer-col-title">Contacto</p>
-                <ul class="footer-links">
-                  <li><a href="#">Av. Ossa 2176, Local 3</a></li>
-                  <li><a href="tel:+56912345678">+56 9 1234 5678</a></li>
-                  <li>
-                    <a href="mailto:hola@linesbarberia.cl"
-                      >hola@linesbarberia.cl</a
-                    >
-                  </li>
-                </ul>
-                <div class="redes-row mt-3">
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    class="red-btn"
-                  >
-                    <svg viewBox="0 0 24 24">
-                      <path
-                        d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                      />
-                    </svg>
-                    IG
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <hr class="footer-divider" />
-
-            <div class="footer-bottom">
-              <span class="footer-copy"
-                >© 2025 Lines Barbería. Todos los derechos reservados.</span
-              >
-              <a
-                href="politica-de-privacidad.html"
-                class="footer-copy"
-                style="opacity: 0.2; text-decoration: none"
-                >Política de privacidad</a
-              >
-            </div>
+          <div class="footer-bottom">
+            <span>© 2025 Lines Barbería. Todos los derechos reservados.</span>
+            <a href="politica-de-privacidad.html">Política de privacidad</a>
           </div>
         </footer>
-      </div>
-      <!-- /smooth-content -->
-    </div>
-    <!-- /smooth-wrapper -->
 
-    <!-- ═══════════════════════ SCRIPTS ════════════════════════════════ -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+      </div><!-- /smooth-content -->
+    </div><!-- /smooth-wrapper -->
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/DrawSVGPlugin.min.js"></script>
     <script type="module" src="main.js"></script>
   </body>
 </html>
