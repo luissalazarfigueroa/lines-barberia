@@ -25,7 +25,7 @@
   /* Aliases para compatibilidad con estructura existente */
   --main-color:  #1F1F1F;
   --mid-color:   #B5523C;
-  --light-color: #4C7C79;
+  --light-color: #F4F1EC;
   --bg-color:    #F4F1EC;
   --border-radius: 10px;
   --border-box: var(--main-color) 1px solid;
