@@ -79,7 +79,8 @@ p {
   font-size: 16px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  opacity: 0.4;
+  color: var(--color-primary);
+  opacity: 1;
   margin-bottom: 12px;
 }
 
@@ -92,11 +93,11 @@ p {
 /* ─── NAVBAR ─────────────────────────────────────────────────────────────── */
 .navbar-nav {
   padding: 2px 30px;
-  border: var(--light-color) solid 2px;
+  border: var(--color-primary-lt) solid 2px;
   border-radius: 999px;
   margin-top: 10px;
   backdrop-filter: blur(10px);
-  background: none;
+  background: rgba(47,93,91,0.15);
   color: var(--light-color);
   font-size: 16px;
 }
@@ -111,13 +112,13 @@ p {
 
 .btn-nav {
   padding: 10px 30px;
-  border: var(--light-color) solid 2px;
+  border: var(--color-primary-lt) solid 2px;
   margin-left: 5px;
   color: white;
   text-decoration: none;
   border-radius: 999px;
   margin-top: 10px;
-  background: rgba(31,62,61,0.65);
+  background: rgba(47,93,91,0.75);
   font-size: 16px;
   text-shadow: none;
 }
@@ -239,7 +240,7 @@ p {
   font-family: var(--font-bold);
   font-size: clamp(60px, 10vw, 120px);
   line-height: 1;
-  color: var(--mid-color);
+  color: var(--color-primary);
   opacity: 0.18;
   font-variant: normal;
   letter-spacing: -0.04em;
@@ -410,7 +411,7 @@ p {
   transition: background 0.3s ease;
 }
 .service-card:hover {
-  background: var(--main-color);
+  background: var(--color-primary-dk);
 }
 .service-card:hover h3,
 .service-card:hover p,
@@ -461,7 +462,7 @@ p {
   font-family: var(--font-bold);
   font-size: clamp(20px, 2vw, 26px);
   font-variant: normal;
-  color: var(--main-color);
+  color: var(--color-primary);
   transition: color 0.3s ease;
 }
 .service-duration {
@@ -740,9 +741,9 @@ p {
   gap: 12px;
   padding: 16px 40px;
   border-radius: 999px;
-  border: var(--main-color) 2px solid;
-  background: var(--main-color);
-  color: var(--light-color);
+  border: var(--color-primary) 2px solid;
+  background: var(--color-primary);
+  color: var(--color-bg-light, #F4F1EC);
   font-family: var(--font-mono);
   font-size: 16px;
   text-decoration: none;
@@ -753,7 +754,7 @@ p {
 }
 .btn-agenda-big:hover {
   background: transparent;
-  color: var(--main-color);
+  color: var(--color-primary);
 }
 
 .horarios-grid {
@@ -790,7 +791,7 @@ p {
 
 /* ─── CONTACTO ───────────────────────────────────────────────────────────── */
 .s-contacto {
-  background: var(--main-color);
+  background: var(--color-primary-dk);
 }
 .s-contacto h2 {
   color: var(--light-color);
