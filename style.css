@@ -51,6 +51,7 @@ body {
 section {
   padding-top: clamp(10px, 9vh, 100px);
   padding-bottom: clamp(10px, 9vh, 100px);
+  border-top: 1px solid rgba(47, 93, 91, 0.12);
 }
 
 h2 {
@@ -234,6 +235,7 @@ p {
 /* ─── ABOUT ──────────────────────────────────────────────────────────────── */
 .s-about {
   overflow: hidden;
+  background: var(--bg-color);
 }
 
 .about-number {
@@ -318,6 +320,7 @@ p {
 
 /* ─── BARBEROS ───────────────────────────────────────────────────────────── */
 .s-barberos {
+  background: var(--color-breath);
   /* hereda padding de section */
 }
 
@@ -513,6 +516,11 @@ p {
   );
 }
 
+/* ─── GALERÍA override fondo */
+#galeria {
+  background: var(--color-bg-beige);
+}
+
 /* ─── GALERÍA ────────────────────────────────────────────────────────────── */
 .gallery-grid {
   display: grid;
@@ -569,7 +577,7 @@ p {
 
 /* ─── TESTIMONIOS ────────────────────────────────────────────────────────── */
 .s-testimonios {
-  background: var(--main-color);
+  background: var(--color-primary-dk);
 }
 .s-testimonios h2 {
   color: var(--light-color);
@@ -702,6 +710,7 @@ p {
   position: relative;
   overflow: hidden;
   text-align: center;
+  background: var(--color-breath);
 }
 
 .s-agenda::before {
@@ -1136,4 +1145,10 @@ footer {
   .card-loose-2 {
     display: none;
   } /* evita overflow en pantallas muy chicas */
+}
+
+/* ─── BORDES en secciones oscuras — más sutil ───────────────────────── */
+.s-testimonios,
+.s-contacto {
+  border-top: 1px solid rgba(76, 124, 121, 0.2);
 }
