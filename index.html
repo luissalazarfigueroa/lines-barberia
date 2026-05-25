@@ -595,9 +595,9 @@
         
 
         <!-- ═══════════════════════ TESTIMONIOS (OPCIÓN 1: MARQUEE) ═══════════════════════ -->
-        <section id="testimonios-opcion-1" class="brutal-section brutal-section-p0 bg-beige pt-xl pb-xl border-bottom-hard">
+        <section id="testimonios" class="brutal-section brutal-section-p0 bg-beige pt-xl pb-xl border-bottom-hard">
           <div class="px-margin mb-xl">
-            <h2 class="text-uppercase m-0">Opción 1: Marquee Infinito</h2>
+            <h2 class="text-uppercase m-0">Testimonios</h2>
             <p class="section-label text-dark opacity-50 mt-3">Dinámico, continuo, moderno.</p>
           </div>
           
@@ -669,74 +669,7 @@
           </div>
         </section>
 
-        <!-- ═══════════════════════ TESTIMONIOS (OPCIÓN 2: GRILLA ASIMÉTRICA) ═══════════════════════ -->
-        <section id="testimonios-opcion-2" class="brutal-section brutal-section-p0 bg-light pt-xl pb-xl border-bottom-hard">
-          <div class="px-margin mb-xl">
-            <h2 class="text-uppercase m-0">Opción 2: Grilla Asimétrica</h2>
-            <p class="section-label text-dark opacity-50 mt-3">Pósters callejeros, caótico pero editorial.</p>
-          </div>
-
-          <div class="px-margin">
-            <div class="testi-poster-grid">
-              <div class="testi-poster-card span-8 theme-dark">
-                <p class="testi-poster-text">"El fade que me hicieron quedó perfecto. Fui por primera vez y ya tengo la próxima cita agendada."</p>
-                <p class="m-0 fw-bold">— Diego Valenzuela</p>
-              </div>
-              <div class="testi-poster-card span-4 theme-red">
-                <p class="testi-poster-text">"Buenísima atención. Te asesoran sobre qué corte te viene mejor."</p>
-                <p class="m-0 fw-bold">— Carlos M.</p>
-              </div>
-              <div class="testi-poster-card span-4 theme-beige">
-                <p class="testi-poster-text">"Puntualidad increíble y el barbero captó enseguida lo que quería."</p>
-                <p class="m-0 fw-bold">— Felipe B.</p>
-              </div>
-              <div class="testi-poster-card span-8 theme-light">
-                <p class="testi-poster-text">"Llevo tres años yendo a Lines y nunca me han fallado. El ambiente, la atención y el resultado siempre son top."</p>
-                <p class="m-0 fw-bold">— Matías González</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ═══════════════════════ TESTIMONIOS (OPCIÓN 3: CARRUSEL) ═══════════════════════ -->
-        <section id="testimonios-opcion-3" class="brutal-section brutal-section-p0 bg-beige pt-xl pb-xl border-bottom-hard">
-          <div class="px-margin mb-xl">
-            <h2 class="text-uppercase m-0">Opción 3: Carrusel Tipográfico</h2>
-            <p class="section-label text-dark opacity-50 mt-3">Impacto puro, una declaración por pantalla.</p>
-          </div>
-
-          <div class="testi-carousel-container">
-            <div id="slide-1" class="testi-carousel-slide active">
-              <p class="testi-carousel-text">"Llevo 3 años yendo a Lines y NUNCA me han fallado. El resultado siempre es TOP."</p>
-              <p class="fs-lg fw-bold m-0">— Matías González</p>
-            </div>
-            <div id="slide-2" class="testi-carousel-slide">
-              <p class="testi-carousel-text">"El fade quedó PERFECTO. Fui por primera vez y ya tengo la próxima cita."</p>
-              <p class="fs-lg fw-bold m-0">— Diego V.</p>
-            </div>
-            <div id="slide-3" class="testi-carousel-slide">
-              <p class="testi-carousel-text">"TE ASESORAN sobre qué corte te viene mejor según tu pelo. Muy PROS."</p>
-              <p class="fs-lg fw-bold m-0">— Carlos M.</p>
-            </div>
-            
-            <div class="testi-carousel-nav">
-              <button class="testi-carousel-btn" onclick="nextSlide(-1)">Anterior</button>
-              <button class="testi-carousel-btn" onclick="nextSlide(1)">Siguiente</button>
-            </div>
-          </div>
-
-          <script>
-            let currentSlide = 1;
-            const totalSlides = 3;
-            function nextSlide(dir) {
-              document.getElementById('slide-' + currentSlide).classList.remove('active');
-              currentSlide += dir;
-              if (currentSlide > totalSlides) currentSlide = 1;
-              if (currentSlide < 1) currentSlide = totalSlides;
-              document.getElementById('slide-' + currentSlide).classList.add('active');
-            }
-          </script>
-        </section>
+        
 
 
         <!-- ═══════════════════════ BLOG PREVIEW ═══════════════════════ -->
