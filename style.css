@@ -35,7 +35,8 @@
   --font-mono: "futura-pt", sans-serif;
 
   /* Typographic Scale (Brutalist) */
-  --fs-xl: clamp(40px, 6vw, 120px); /* Massive titles */
+  --fs-h1: clamp(40px, 5vw, 120px); /* Massive titles */
+  --fs-xl: clamp(40px, 4vw, 120px); /* Massive titles */
   --fs-lg: clamp(30px, 4vw, 50px); /* Section headers / Sub-massive */
   --fs-md: clamp(20px, 2vw, 21px); /* Subheadings / Important text */
   --fs-sm: clamp(16px, 1.2vw, 18px); /* Body text / labels */
@@ -47,19 +48,13 @@
   --fw-bold: 700;
 
   /* Vertical Spacing System */
-  --space-xl: clamp(60px, 8vh, 100px); /* Section padding top/bottom */
-  --space-lg: clamp(40px, 6vh, 60px); /* Title to content gaps */
-  --space-md: clamp(20px, 3vh, 30px); /* Medium gaps */
-  --space-sm: clamp(10px, 1.5vh, 15px); /* Small gaps */
-
-  /* Vertical Spacing System */
-  --space-xl: clamp(60px, 8vh, 100px); /* Section padding top/bottom */
-  --space-lg: clamp(40px, 6vh, 60px); /* Title to content gaps */
-  --space-md: clamp(20px, 3vh, 30px); /* Medium gaps */
-  --space-sm: clamp(10px, 1.5vh, 15px); /* Small gaps */
+  --space-xl: clamp(60px, 9vh, 120px); /* Section padding top/bottom */
+  --space-lg: clamp(40px, 7vh, 80px); /* Title to content gaps */
+  --space-md: clamp(20px, 4vh, 50px); /* Medium gaps */
+  --space-sm: clamp(10px, 2vh, 25px); /* Small gaps */
 
   /* Layout */
-  --margin-factor: 8vw;
+  --margin-factor: 5vw;
 }
 .bt-none {
   border-top: none !important;
@@ -114,7 +109,7 @@ p {
   text-transform: uppercase;
   color: var(--color-primary);
   opacity: 1;
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xl);
 }
 
 /* ─── GSAP INITIAL STATES ────────────────────────────────────────────────── */
@@ -297,7 +292,7 @@ p {
   text-transform: uppercase;
   font-family: "futura-pt", sans-serif;
   font-weight: 400;
-  font-size: var(--fs-xl);
+  font-size: var(--fs-h1);
   letter-spacing: 0.1rem;
   line-height: 0.9;
   width: fit-content;
@@ -1963,7 +1958,7 @@ footer {
 /* Universal Header Margins */
 .brutal-section .section-label {
   margin-top: 0 !important;
-  margin-bottom: var(--space-sm) !important;
+  margin-bottom: var(--space-lg) !important;
 }
 .brutal-section h2 {
   margin-top: 0 !important;
