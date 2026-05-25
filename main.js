@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let shaveAnim = null;
 
   function initShave() {
-    const section = document.getElementById("corteDeBarba");
+    const section = document.getElementById("productos");
     const svg = document.getElementById("shaveSvg");
     const path = document.getElementById("shave");
     if (!section || !svg || !path) return;
@@ -170,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
         duration: 3,
         ease: "linear",
         scrollTrigger: {
-          trigger: "#corteDeBarba",
+          trigger: "#productos",
           start: "top 65%",
           toggleActions: "play none none reverse",
         },
@@ -328,4 +328,151 @@ document.addEventListener("DOMContentLoaded", () => {
       right.classList.remove("active");
     }
   });
+
+  // ─── GEOMETRIC CANVAS BACKGROUNDS ───────────────────────────────────────────
+  function initGeometricCanvas(canvasId, options) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    let width, height;
+    let lines = [];
+    const colors = options.colors || ["#ffffff"];
+
+    function resize() {
+      width = canvas.parentElement.offsetWidth;
+      height = canvas.parentElement.offsetHeight;
+      canvas.width = width;
+      canvas.height = height;
+      generateLines();
+    }
+
+    function generateLines() {
+      lines = [];
+      const numLines = options.numLines || 25;
+      const maxL = Math.max(width, height) * 1.5;
+      const allowedAngles = [15, 30, 45, 60, 75, 105, 120, 135, 150, 165];
+
+      let attempts = 0;
+      while (lines.length < numLines && attempts < 500) {
+        attempts++;
+        let cx = Math.random() * width;
+        let cy = Math.random() * height;
+        let angleDeg =
+          allowedAngles[Math.floor(Math.random() * allowedAngles.length)];
+        let theta = (angleDeg * Math.PI) / 180;
+
+        let isTooSimilar = false;
+        let nx = -Math.sin(theta);
+        let ny = Math.cos(theta);
+
+        for (let i = 0; i < lines.length; i++) {
+          let other = lines[i];
+          if (Math.abs(other.theta - theta) < 0.01) {
+            let dist = Math.abs((cx - other.bx) * nx + (cy - other.by) * ny);
+            let minDist = options.minDist || 150;
+            if (dist < minDist) {
+              isTooSimilar = true;
+              break;
+            }
+          }
+        }
+
+        if (isTooSimilar) continue;
+
+        let z = 0.1 + Math.random() * 1.5;
+        let opacity =
+          (options.opacityBase || 0.05) + z * (options.opacityVar || 0.1);
+
+        lines.push({
+          bx: cx,
+          by: cy,
+          theta: theta,
+          z: z,
+          opacity: opacity,
+          maxL: maxL,
+          colorType: Math.floor(Math.random() * colors.length),
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+      for (let i = 0; i < lines.length; i++) {
+        let line = lines[i];
+
+        ctx.globalAlpha = line.opacity;
+        ctx.strokeStyle = colors[line.colorType];
+        ctx.lineWidth = line.z > 1.2 ? 1.5 : 1;
+
+        let cx = line.bx;
+        let cy = line.by;
+        let drawDx = Math.cos(line.theta);
+        let drawDy = Math.sin(line.theta);
+
+        ctx.beginPath();
+        ctx.moveTo(cx - drawDx * line.maxL, cy - drawDy * line.maxL);
+        ctx.lineTo(cx + drawDx * line.maxL, cy + drawDy * line.maxL);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1.0;
+    }
+
+    let resizeTimer;
+    window.addEventListener("resize", () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        resize();
+        draw();
+      }, 150);
+    });
+
+    resize();
+    draw();
+  }
+
+  // Inicializar canvas geométricos
+  initGeometricCanvas("heroCanvas", {
+    colors: ["#ffffff"],
+    numLines: 3,
+    minDist: 380,
+    opacityBase: 0.3,
+    opacityVar: 0.3,
+  });
+
+  initGeometricCanvas("galeriaCanvas", {
+    colors: ["#b1b1b1"],
+    numLines: 8,
+    minDist: 150,
+    opacityBase: 0.4,
+    opacityVar: 0.5,
+  });
+
+  // ─── NAVBAR ────────────────────────────────────────────────────────────────
+  function initBasicNav() {
+    const navbar = document.getElementById("navbar");
+
+    if (navbar) {
+      const updateNavbar = () =>
+        navbar.classList.toggle("scrolled", window.scrollY > 80);
+      updateNavbar();
+      window.addEventListener("scroll", updateNavbar, { passive: true });
+    }
+
+    // Cerrar menú móvil al hacer click en un enlace
+    document.querySelectorAll(".nav-link, .nav-cta").forEach((a) => {
+      a.addEventListener("click", () => {
+        const navbarCollapse = document.getElementById("navbarContent");
+        if (navbarCollapse && navbarCollapse.classList.contains("show")) {
+          // Bootstrap 5 collapse hide
+          const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
+            toggle: false,
+          });
+          bsCollapse.hide();
+        }
+      });
+    });
+  }
+
+  initBasicNav();
 });
