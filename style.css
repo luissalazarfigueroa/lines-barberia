@@ -59,7 +59,7 @@
   --space-sm: clamp(10px, 1.5vh, 15px); /* Small gaps */
 
   /* Layout */
-  --margin-factor: 5vw;
+  --margin-factor: 8vw;
 }
 .bt-none {
   border-top: none !important;
