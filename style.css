@@ -182,6 +182,17 @@ p {
   opacity: 1;
   color: var(--color-primary-dk);
 }
+/* Bootstrap aplica su propio color (casi negro) a .nav-link.active con más
+   especificidad que .nav-links a — sin esto, el link activo queda con muy
+   bajo contraste sobre el navbar oscuro. */
+.nav-links a.active {
+  color: var(--color-accent-lt) !important;
+  opacity: 1 !important;
+}
+#navbar.scrolled .nav-links a.active {
+  color: var(--color-primary-dk) !important;
+  opacity: 1 !important;
+}
 
 .nav-cta {
   font-family: var(--font-mono);
@@ -455,9 +466,25 @@ p {
   font-family: var(--font-mono);
   font-size: var(--fs-sm);
   color: var(--main-color);
-  opacity: 0.6;
+  opacity: 0.7;
   margin-top: 4px;
   text-shadow: none;
+}
+
+/* ─── FACT CARD (listas de datos/beneficios en grid, ej. "qué aprenderás") ─── */
+.fact-card {
+  border: var(--border-box);
+  border-radius: var(--border-radius);
+  background: var(--bg-color);
+  height: 100%;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-bold);
+  font-weight: 700;
+  font-variant: normal;
+  font-size: clamp(16px, 1.6vw, 22px);
+  line-height: 1.3;
 }
 
 /* ─── BARBEROS ───────────────────────────────────────────────────────────── */
@@ -520,8 +547,29 @@ p {
   transform: rotateY(180deg);
 }
 
+.flip-back::before,
+.flip-back::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  width: 70px;
+}
+.flip-back::before {
+  bottom: 0;
+  left: 0;
+  height: 65%;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+}
+.flip-back::after {
+  top: 0;
+  right: 0;
+  height: 65%;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), transparent);
+}
 .flip-back p {
   position: absolute;
+  z-index: 2;
   color: var(--light-color);
   font-variant: all-small-caps;
   font-size: var(--fs-lg);
@@ -811,17 +859,33 @@ p {
   border-radius: var(--border-radius);
   overflow: hidden;
   height: 100%;
+  background: var(--bg-color);
+  color: var(--main-color);
   text-decoration: none;
-  display: block;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.3s ease;
+}
+.blog-card > .blog-card-body.pt-0 {
+  margin-top: auto;
+}
+.blog-card > a {
+  display: block;
+  color: inherit;
+  text-decoration: none;
 }
 .blog-card:hover {
   transform: translateY(-4px);
 }
 
 .blog-card-img {
+  position: relative;
   aspect-ratio: 16/9;
   overflow: hidden;
+}
+.blog-card-img .tag-pill {
+  z-index: 1;
+  background: var(--color-bg-light);
 }
 .blog-card-img img {
   width: 100%;
@@ -842,7 +906,7 @@ p {
   font-size: var(--fs-sm);
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--mid-color);
+  color: var(--color-accent-dk);
   text-shadow: none;
   margin-bottom: 8px;
 }
@@ -855,9 +919,9 @@ p {
   line-height: 1.3;
   margin-bottom: 8px;
 }
-.blog-card-body p {
+.blog-card-body p:not(.blog-cat) {
   font-size: var(--fs-sm);
-  opacity: 0.6;
+  opacity: 0.7;
   margin: 0;
 }
 
@@ -1393,6 +1457,60 @@ footer {
   border: var(--brutalist-border) !important;
   box-shadow: 12px 12px 0px var(--main-color) !important;
 }
+/* Cursos: cards oscuras — reutiliza .service-card + .course-card */
+.brutal-section.s-cursos .service-card {
+  display: block;
+  color: var(--light-color);
+  text-decoration: none;
+  background: var(--color-bg-dark) !important;
+  border: 2px solid var(--color-bg-light) !important;
+}
+.brutal-section.s-cursos .service-card:hover {
+  background: var(--color-primary-dk) !important;
+  box-shadow: 4px 4px 0px var(--color-accent) !important;
+}
+.brutal-section.s-cursos .service-num {
+  color: var(--light-color);
+}
+.brutal-section.s-cursos .service-price {
+  color: var(--color-accent-lt);
+}
+.brutal-section.s-cursos .service-duration {
+  color: var(--light-color);
+  opacity: 0.75;
+}
+.brutal-section.s-cursos .course-card {
+  box-shadow: 12px 12px 0px var(--color-accent) !important;
+}
+.service-card:has(.tag-pill) h3 {
+  margin-top: 28px;
+}
+
+/* ─── TAG PILL (insignia reutilizable: nivel, cupos, oferta, stock) ─────── */
+.tag-pill {
+  display: inline-block;
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-accent-dk);
+}
+.brutal-section.s-cursos .tag-pill {
+  color: var(--color-accent-lt);
+}
+.tag-pill--inline {
+  position: static;
+  margin-left: 8px;
+}
+.article-cover--contain img {
+  object-fit: contain;
+  background: var(--color-bg-light);
+}
 .brutal-section .data-pill {
   border-radius: 0 !important;
   border: var(--brutalist-border) !important;
@@ -1454,70 +1572,6 @@ footer {
   stroke: var(--color-support);
   stroke-width: 2px;
   fill: none;
-}
-
-.course-banner {
-  display: block;
-  text-decoration: none;
-  border-bottom: 1px solid black;
-  padding: clamp(40px, 6vw, 80px) var(--margin-factor);
-  background: var(--color-bg-dark);
-  color: var(--color-bg-light);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-.course-banner .course-num {
-  font-family: var(--font-bold);
-  font-size: var(--fs-lg);
-  opacity: 0.3;
-  margin-bottom: 16px;
-  display: block;
-  transition: all 0.4s ease;
-}
-.course-banner h3 {
-  font-family: var(--font-bold);
-  font-size: var(--fs-lg);
-  margin-bottom: 16px;
-  transition: all 0.4s ease;
-}
-.course-banner p {
-  font-size: var(--fs-sm);
-  max-width: 600px;
-  margin-bottom: 0;
-  opacity: 0.7;
-  transition: all 0.4s ease;
-}
-.course-banner .course-arrow {
-  position: absolute;
-  right: var(--margin-factor);
-  top: 50%;
-  transform: translateY(-50%) translateX(-20px);
-  opacity: 0;
-  transition: all 0.4s ease;
-  font-size: var(--fs-xl);
-  font-family: var(--font-bold);
-}
-.course-banner:hover {
-  background: var(--color-primary-lt);
-  color: var(--color-bg-dark);
-  padding-left: 7vw;
-}
-.course-banner:hover .course-num {
-  color: var(--color-bg-dark);
-  opacity: 0.6;
-}
-.course-banner:hover h3 {
-  color: var(--color-bg-dark);
-}
-.course-banner:hover p {
-  color: var(--color-bg-dark);
-  opacity: 1;
-}
-.course-banner:hover .course-arrow {
-  opacity: 1;
-  transform: translateY(-50%) translateX(0);
-  color: var(--color-bg-dark);
 }
 
 .bento-cell {
@@ -1796,6 +1850,7 @@ footer {
   margin-bottom: 30px;
   text-transform: uppercase;
   font-family: var(--font-bold);
+  color: var(--light-color) !important;
 }
 .btn-mc-agenda {
   display: inline-flex;
@@ -1824,7 +1879,7 @@ footer {
   font-family: var(--font-mono);
   text-transform: uppercase;
   font-size: var(--fs-sm);
-  opacity: 0.6;
+  opacity: 0.7;
   margin-bottom: 20px;
 }
 .mc-hour-row {
@@ -1854,7 +1909,7 @@ footer {
   font-family: var(--font-mono);
   font-size: var(--fs-sm);
   text-transform: uppercase;
-  opacity: 0.6;
+  opacity: 0.7;
   margin-bottom: 5px;
 }
 .mc-info-value {
@@ -2355,28 +2410,212 @@ footer {
   }
 }
 
-/* ─── UTILITY CLASSES ──────────────────────────────────────────────────────── */
-.bg-dark {
-  background-color: var(--color-bg-dark) !important;
-  color: var(--color-bg-light);
+/* ─── CONTRASTE: section-label / links sobre fondo oscuro ────────────────── */
+.bg-dark .section-label,
+.bg-dark .section-label a,
+.brutal-section.s-cursos .section-label,
+.brutal-section.s-cursos .section-label a {
+  color: var(--color-bg-beige);
 }
-.bg-light {
-  background-color: var(--color-bg-light) !important;
-  color: var(--color-bg-dark);
+
+/* ─── TÍTULO DE SINGLE (post / curso / producto) ─────────────────────────── */
+.article-title {
+  font-family: var(--font-bold);
+  font-weight: 700;
+  font-size: var(--fs-h1);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--space-md);
 }
-.bg-beige {
-  background-color: var(--color-bg-beige) !important;
-  color: var(--color-bg-dark);
+.article-title--sm {
+  font-size: var(--fs-lg);
 }
-.brutal-section-p0 {
-  padding: 0 !important;
+.service-price--lg {
+  font-size: var(--fs-lg);
 }
-.border-bottom-hard {
-  border-bottom: 1px solid black !important;
+.article-cover {
+  aspect-ratio: 16/7;
+  overflow: hidden;
+  border: var(--brutalist-border);
+  margin-bottom: var(--space-md);
 }
-.relative {
-  position: relative !important;
+.article-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
-.overflow-hidden {
-  overflow: hidden !important;
+.article-body a,
+.brutal-section p a {
+  color: var(--color-primary);
+}
+.article-body p {
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+  margin-bottom: var(--space-sm);
+}
+
+/* ─── TIENDA / PRODUCTO (mockup WooCommerce) — reutiliza .blog-card, .service-* ─── */
+.product-price-row {
+  margin-top: 14px;
+}
+.product-price-row .btn {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+}
+.price-old {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  opacity: 0.7;
+  text-decoration: line-through;
+  margin-right: 8px;
+}
+.thumb-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+.thumb-item {
+  width: 72px;
+  aspect-ratio: 1/1;
+  border: var(--brutalist-border);
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s ease;
+  flex-shrink: 0;
+  background: #fff;
+}
+.thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+.thumb-item.active,
+.thumb-item:hover {
+  opacity: 1;
+  border-color: var(--color-primary);
+}
+.qty-box {
+  max-width: 130px;
+}
+.qty-box .form-control {
+  text-align: center;
+}
+
+/* ─── FORMULARIOS (checkout, filtros de tienda) ─────────────────────────── */
+.form-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
+.form-control,
+.form-select {
+  border-radius: 0;
+  border: var(--brutalist-border);
+  background: var(--color-bg-light);
+  color: var(--main-color);
+  font-family: var(--font-mono);
+  padding: 10px 14px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--color-primary);
+  box-shadow: none;
+  background: var(--color-bg-light);
+  color: var(--main-color);
+}
+.form-check-input {
+  border-radius: 0;
+  border: var(--brutalist-border);
+}
+.form-check-input:checked {
+  background-color: var(--main-color);
+  border-color: var(--main-color);
+}
+
+/* ─── TABLA CARRITO ───────────────────────────────────────────────────────── */
+.table-lines th {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+  border-bottom: 2px solid var(--main-color) !important;
+}
+.table-lines td {
+  font-family: var(--font-mono);
+  vertical-align: middle;
+  border-color: rgba(0, 0, 0, 0.1);
+}
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.cart-product img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: #fff;
+  border: var(--brutalist-border);
+  flex-shrink: 0;
+}
+.cart-product-name {
+  font-family: var(--font-bold);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+.link-muted {
+  color: var(--main-color);
+  opacity: 0.75;
+}
+.link-muted:hover {
+  opacity: 1;
+}
+.summary-box {
+  border: var(--brutalist-border);
+  padding: var(--space-md);
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  margin-bottom: 8px;
+}
+.text-mono-sm {
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+}
+.text-measure {
+  max-width: 720px;
+}
+
+/* ─── NAV TABS (producto: descripción / info / envío) ────────────────────── */
+.nav-tabs {
+  border-bottom: var(--brutalist-border);
+}
+.nav-tabs .nav-link {
+  color: var(--main-color);
+  opacity: 0.75;
+  font-family: var(--font-mono);
+  font-size: var(--fs-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border: none;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+}
+.nav-tabs .nav-link.active {
+  color: var(--main-color) !important;
+  opacity: 1;
+  background: transparent;
+  border-color: var(--main-color);
 }

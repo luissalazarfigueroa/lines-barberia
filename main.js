@@ -69,36 +69,18 @@ document.addEventListener("DOMContentLoaded", () => {
     },
   });
 
-  // ─── LOGO COLOR (claro en hero, oscuro al salir) ──────────────────────────────
-  const logo = document.querySelector("#logo");
-
-  gsap.set(logo, { fill: "var(--light-color)" });
-
-  ScrollTrigger.create({
-    trigger: "#nosotros", // primer sección real tras el hero
-    scroller: scrollerEl,
-    start: "top top",
-    onEnter: () =>
-      gsap.to(logo, {
-        fill: "var(--main-color)",
-        duration: 0.2,
-        overwrite: "auto",
-      }),
-    onLeaveBack: () =>
-      gsap.to(logo, {
-        fill: "var(--light-color)",
-        duration: 0.2,
-        overwrite: "auto",
-      }),
-  });
+  // Nota: el color del logo al hacer scroll ahora lo maneja el CSS
+  // (#navbar.scrolled .nav-logo svg) vía initBasicNav() más abajo.
 
   // ─── LÍNEA HERO (DrawSVG al cargar) ──────────────────────────────────────────
-  gsap.set("#lineaUno", { drawSVG: "0%" });
-  gsap.fromTo(
-    "#lineaUno",
-    { drawSVG: "0%" },
-    { drawSVG: "0% 100%", duration: 2, ease: "power2.out" },
-  );
+  if (document.querySelector("#lineaUno")) {
+    gsap.set("#lineaUno", { drawSVG: "0%" });
+    gsap.fromTo(
+      "#lineaUno",
+      { drawSVG: "0%" },
+      { drawSVG: "0% 100%", duration: 2, ease: "power2.out" },
+    );
+  }
 
   // ─── SHAVE SVG RESPONSIVE ────────────────────────────────────────────────────
   /**
@@ -195,22 +177,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ─── LÍNEA DOS (barberos section) ────────────────────────────────────────────
-  gsap.set("#lineaDos", { drawSVG: "0% 0%" });
-  gsap.fromTo(
-    "#lineaDos",
-    { drawSVG: "0% 0%" },
-    {
-      drawSVG: "0% 50%",
-      duration: 1.2,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: "#lineaDos",
-        start: "top 85%",
-        end: "top 60%",
-        toggleActions: "play none none reverse",
+  if (document.querySelector("#lineaDos")) {
+    gsap.set("#lineaDos", { drawSVG: "0% 0%" });
+    gsap.fromTo(
+      "#lineaDos",
+      { drawSVG: "0% 0%" },
+      {
+        drawSVG: "0% 50%",
+        duration: 1.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: "#lineaDos",
+          start: "top 85%",
+          end: "top 60%",
+          toggleActions: "play none none reverse",
+        },
       },
-    },
-  );
+    );
+  }
 
   // ─── NAV ENTRADA ─────────────────────────────────────────────────────────────
   gsap.from("nav", { y: -200, duration: 2 });
@@ -238,59 +222,71 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ─── FLIP CARDS (barberos) ───────────────────────────────────────────────────
   const cards = document.querySelectorAll(".flip-card");
-  const triggerEl =
-    document.querySelector(".card-lines")?.parentElement || document.body;
+  if (cards.length) {
+    const triggerEl =
+      document.querySelector(".card-lines")?.parentElement || document.body;
 
-  const flipTl = gsap.timeline({
-    paused: true,
-    defaults: { ease: "power2.out", duration: 0.4 },
-  });
-
-  flipTl
-    .to({}, { duration: 0.25 }) // pequeña pausa antes de empezar
-    .to(cards, {
-      rotateY: 180,
-      stagger: { each: 0.15, from: "random" },
+    const flipTl = gsap.timeline({
+      paused: true,
+      defaults: { ease: "power2.out", duration: 0.4 },
     });
 
-  ScrollTrigger.create({
-    trigger: triggerEl,
-    start: "top 70%",
-    onEnter: () => flipTl.play(),
-    onLeaveBack: () => flipTl.reverse(),
-  });
+    flipTl
+      .to({}, { duration: 0.25 }) // pequeña pausa antes de empezar
+      .to(cards, {
+        rotateY: 180,
+        stagger: { each: 0.15, from: "random" },
+      });
+
+    ScrollTrigger.create({
+      trigger: triggerEl,
+      start: "top 70%",
+      onEnter: () => flipTl.play(),
+      onLeaveBack: () => flipTl.reverse(),
+    });
+  }
 
   // ─── TARJETAS SUELTAS (parallax) ─────────────────────────────────────────────
-  gsap.from(".card-loose-1", {
-    x: 200,
-    rotate: 4,
-    duration: 1,
-    ease: "power4.out",
-    scrollTrigger: { trigger: ".card-loose-1", scrub: true },
-  });
-  gsap.from(".card-loose-2", {
-    x: -200,
-    rotate: -4,
-    duration: 1,
-    ease: "power4.out",
-    scrollTrigger: { trigger: ".card-loose-2", scrub: true },
-  });
+  if (document.querySelector(".card-loose-1")) {
+    gsap.from(".card-loose-1", {
+      x: 200,
+      rotate: 4,
+      duration: 1,
+      ease: "power4.out",
+      scrollTrigger: { trigger: ".card-loose-1", scrub: true },
+    });
+  }
+  if (document.querySelector(".card-loose-2")) {
+    gsap.from(".card-loose-2", {
+      x: -200,
+      rotate: -4,
+      duration: 1,
+      ease: "power4.out",
+      scrollTrigger: { trigger: ".card-loose-2", scrub: true },
+    });
+  }
 
   // ─── HERO ANIMATIONS ─────────────────────────────────────────────────────────
-  gsap.from(".hero-bg", {
-    scale: 1.3,
-    filter: "blur(10px)",
-    duration: 3,
-    ease: "power4.out",
-  });
-  gsap.from("h1", { scale: 0.9, duration: 3, ease: "power2.out" });
-  gsap.from(".btn-lines", {
-    y: 20,
-    delay: 1,
-    duration: 1,
-    ease: "power2.out",
-    autoAlpha: 0,
-  });
+  if (document.querySelector(".hero-bg")) {
+    gsap.from(".hero-bg", {
+      scale: 1.3,
+      filter: "blur(10px)",
+      duration: 3,
+      ease: "power4.out",
+    });
+  }
+  if (document.querySelector("h1")) {
+    gsap.from("h1", { scale: 0.9, duration: 3, ease: "power2.out" });
+  }
+  if (document.querySelector(".btn-lines")) {
+    gsap.from(".btn-lines", {
+      y: 20,
+      delay: 1,
+      duration: 1,
+      ease: "power2.out",
+      autoAlpha: 0,
+    });
+  }
 
   // ─── REVEAL-UP (scroll) ──────────────────────────────────────────────────────
   gsap.utils.toArray(".reveal-up").forEach((el) => {
@@ -309,25 +305,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const left = document.querySelector(".left");
   const right = document.querySelector(".right");
 
-  if (!btn || !left || !right) return;
+  if (btn && left && right) {
+    btn.addEventListener("mouseover", () => {
+      if (intervalId === null) {
+        intervalId = setInterval(() => {
+          left.classList.toggle("active");
+          right.classList.toggle("active");
+        }, 200);
+      }
+    });
 
-  btn.addEventListener("mouseover", () => {
-    if (intervalId === null) {
-      intervalId = setInterval(() => {
-        left.classList.toggle("active");
-        right.classList.toggle("active");
-      }, 200);
-    }
-  });
-
-  btn.addEventListener("mouseleave", () => {
-    if (intervalId !== null) {
-      clearInterval(intervalId);
-      intervalId = null;
-      left.classList.remove("active");
-      right.classList.remove("active");
-    }
-  });
+    btn.addEventListener("mouseleave", () => {
+      if (intervalId !== null) {
+        clearInterval(intervalId);
+        intervalId = null;
+        left.classList.remove("active");
+        right.classList.remove("active");
+      }
+    });
+  }
 
   // ─── GEOMETRIC CANVAS BACKGROUNDS ───────────────────────────────────────────
   function initGeometricCanvas(canvasId, options) {
@@ -440,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
     opacityVar: 0.3,
   });
 
-  initGeometricCanvas("galeriaCanvas", {
+  initGeometricCanvas("teamCanvas", {
     colors: ["#b1b1b1"],
     numLines: 8,
     minDist: 150,
@@ -453,8 +449,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.getElementById("navbar");
 
     if (navbar) {
+      // Páginas sin hero/banner oscuro al inicio (singles, carrito, checkout)
+      // deben partir con el nav en su estado "scrolled" (oscuro sobre claro),
+      // porque de lo contrario el logo y los links claros quedan invisibles
+      // sobre el fondo claro hasta que el usuario haga scroll.
+      const firstSection = document.querySelector("#smooth-content")
+        ?.firstElementChild;
+      const startsDark =
+        firstSection &&
+        (firstSection.classList.contains("s-hero") ||
+          firstSection.classList.contains("bg-dark"));
+
       const updateNavbar = () =>
-        navbar.classList.toggle("scrolled", window.scrollY > 80);
+        navbar.classList.toggle(
+          "scrolled",
+          !startsDark || window.scrollY > 80,
+        );
       updateNavbar();
       window.addEventListener("scroll", updateNavbar, { passive: true });
     }

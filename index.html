@@ -13,8 +13,8 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
     <link rel="stylesheet" href="https://use.typekit.net/wrd5ubt.css" />
-    <link rel="stylesheet" href="font/css/switzer.css" />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="img/lines-logo.png" />
   </head>
 
   <body>
@@ -42,11 +42,11 @@
         <div class="collapse navbar-collapse" id="navbarContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0 nav-links align-items-lg-center">
             <li class="nav-item"><a class="nav-link" href="#about-experimental" data-nav>Nosotros</a></li>
-            <li class="nav-item"><a class="nav-link" href="#productos" data-nav>Productos</a></li>
-            <li class="nav-item"><a class="nav-link" href="#cursos" data-nav>Cursos</a></li>
+            <li class="nav-item"><a class="nav-link" href="tienda/index.html" data-nav>Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="cursos/index.html" data-nav>Cursos</a></li>
             <li class="nav-item"><a class="nav-link" href="#barberos" data-nav>Equipo</a></li>
             <li class="nav-item"><a class="nav-link" href="#galeria" data-nav>Galería</a></li>
-            <li class="nav-item"><a class="nav-link" href="#blog" data-nav>Blog</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog/index.html" data-nav>Blog</a></li>
             <li class="nav-item ms-lg-4 mt-3 mt-lg-0">
               <a class="nav-cta" href="https://weibook.co/linesw17">Agenda tu hora</a>
             </li>
@@ -58,7 +58,7 @@
     <div id="smooth-wrapper">
       <div id="smooth-content">
         <!-- ═══════════════════════ HERO ═══════════════════════════════ -->
-        <section class="s-hero relative">
+        <section id="hero" class="s-hero relative">
           <div class="sello">
             <svg
               id="svg2983"
@@ -92,10 +92,10 @@
                   <h1
                     class="title-hero text-start ms-0"
                   >
-                    -La experiencia</br> de un buen corte-
+                    -La experiencia<br /> de un buen corte-
                   </h1>
 
-                  <a href="https://weibook.co/linesw17" target="_blank" class="btn btn-lines mt-md ms-0 d-inline-flex align-items-center">
+                  <a href="https://weibook.co/linesw17" target="_blank" rel="noopener noreferrer" class="btn btn-lines mt-md ms-0 d-inline-flex align-items-center">
                     Agenda tu hora
                     <svg class="ms-2" style="width: 30px; transform: rotate(35deg) translate(0px, 0px);" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 34">
                       <defs>
@@ -180,47 +180,8 @@
           </div>
         </section>
 
-        <!-- ═══════════════════════ ABOUT ══════════════════════════════ -->
-        <section id="nosotros " class="s-about brutal-section d-none">
-          <div class="container-fluid justify-content-between relative">
-            <div class="row align-items-center g-5">
-       
-              <div class="col-lg-8 col-about relative">
-                <p class="section-label reveal-up">/ Nuestra historia</p>
-                <div class="about-number reveal-up">Lines</div>
-                <h2 class="about-line reveal-up">
-                  Más que un corte,
-                  una <span class="text-script">experiencia</span>
-                </h2>
-                <p class="about-body reveal-up">
-                  Lines nació en 2018 con una idea simple: que cada persona que
-                  entra por nuestra puerta salga sintiéndose bien. No solo con
-                  el corte, sino con todo lo que rodea el momento.
-                </p>
-                <p class="about-body reveal-up">
-                  Nos tomamos el tiempo de entender qué quieres, trabajamos con
-                  productos de calidad y cuidamos cada detalle del espacio. Tres
-                  barberos con estilos distintos pero con la misma línea.
-                </p>
-                <a
-                  class="btn btn-lines-dark d-inline-flex mt-lg reveal-up"
-                  href="#barberos"
-                >
-                  Conoce al equipo
-                </a>
-              </div>
-                     <div class="col-auto">
-                <div class="about-img-wrap reveal-up">
-                  <img src="img/lines.webp" alt="Interior de Lines Barbería" />
-                  <span class="about-tag">Av. Ossa 2176, Local 3</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <!-- ═══════════════════════ BARBEROS ═══════════════════════════ -->
-        <section id="barberos " class="s-barberos brutal-section relative overflow-hidden">
+        <section id="barberos" class="s-barberos brutal-section relative overflow-hidden">
           <canvas id="teamCanvas" class="absolute-fill z-0 pointer-none opacity-80"></canvas>
           <div class="container max-w-1320">
             <div class="row justify-content-center relative">
@@ -351,80 +312,118 @@
             <p class="section-label reveal-up">/ Para tu cuidado</p>
             <h2 class="reveal-up">Productos</h2>
 
-            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-5 g-4">
               <div class="col">
-                <div class="service-card">
-                  <img src="img/cera.png" alt="Cera Modeladora" class="img-fluid product-card-img mb-3">
-                  <span class="service-num">01</span>
-                  <h3>Cera Modeladora</h3>
-                  <p>
-                    Fijación fuerte y acabado mate. Ideal para dar textura sin
-                    dejar residuos.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">Consultar en local</span>
+                <div class="blog-card reveal-up">
+                  <a href="tienda/producto-single.html">
+                    <div class="blog-card-img">
+                      <span class="tag-pill">-15%</span>
+                      <img src="img/cera.png" alt="Cera Modeladora" />
+                    </div>
+                    <div class="blog-card-body pb-0">
+                      <p class="blog-cat">Ceras y pomadas</p>
+                      <h4>Cera Modeladora</h4>
+                      <p>Fijación fuerte y acabado mate. Ideal para dar textura sin dejar residuos.</p>
+                    </div>
+                  </a>
+                  <div class="blog-card-body pt-0">
+                    <div class="product-price-row">
+                      <span><span class="price-old">$9.000</span><span class="service-price">$7.650</span></span>
+                      <a href="tienda/carrito.html" class="btn btn-lines-dark">Agregar</a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="service-card">
-                  <img src="img/aceite.png" alt="Aceite para Barba" class="img-fluid product-card-img mb-3">
-                  <span class="service-num">02</span>
-                  <h3>Aceite para Barba</h3>
-                  <p>
-                    Hidrata la piel y suaviza el vello facial, previniendo la
-                    picazón.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">Consultar en local</span>
+                <div class="blog-card reveal-up">
+                  <a href="tienda/index.html">
+                    <div class="blog-card-img">
+                      <img src="img/aceite.png" alt="Aceite para Barba" />
+                    </div>
+                    <div class="blog-card-body pb-0">
+                      <p class="blog-cat">Aceites</p>
+                      <h4>Aceite para Barba</h4>
+                      <p>Hidrata la piel y suaviza el vello facial, previniendo la picazón.</p>
+                    </div>
+                  </a>
+                  <div class="blog-card-body pt-0">
+                    <div class="product-price-row">
+                      <span class="service-price">$8.500</span>
+                      <a href="tienda/carrito.html" class="btn btn-lines-dark">Agregar</a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="service-card">
-                  <img src="img/shampoo.png" alt="Shampoo Especializado" class="img-fluid product-card-img mb-3">
-                  <span class="service-num">03</span>
-                  <h3>Shampoo Especializado</h3>
-                  <p>
-                    Limpieza profunda que cuida tu cuero cabelludo todos los
-                    días.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">Consultar en local</span>
+                <div class="blog-card reveal-up">
+                  <a href="tienda/index.html">
+                    <div class="blog-card-img">
+                      <img src="img/shampoo.png" alt="Shampoo Especializado" />
+                    </div>
+                    <div class="blog-card-body pb-0">
+                      <p class="blog-cat">Shampoo</p>
+                      <h4>Shampoo Especializado</h4>
+                      <p>Limpieza profunda que cuida tu cuero cabelludo todos los días.</p>
+                    </div>
+                  </a>
+                  <div class="blog-card-body pt-0">
+                    <div class="product-price-row">
+                      <span class="service-price">$10.900</span>
+                      <a href="tienda/carrito.html" class="btn btn-lines-dark">Agregar</a>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="service-card">
-                  <img src="img/peineta.png" alt="Peineta de Madera" class="img-fluid product-card-img mb-3">
-                  <span class="service-num">04</span>
-                  <h3>Peineta de Madera</h3>
-                  <p>
-                    Ideal para desenredar y dar forma. Antiestática y muy
-                    resistente.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">Consultar en local</span>
+                <div class="blog-card reveal-up">
+                  <a href="tienda/index.html">
+                    <div class="blog-card-img">
+                      <span class="tag-pill">Agotado</span>
+                      <img src="img/peineta.png" alt="Peineta de Madera" />
+                    </div>
+                    <div class="blog-card-body pb-0">
+                      <p class="blog-cat">Accesorios</p>
+                      <h4>Peineta de Madera</h4>
+                      <p>Ideal para desenredar y dar forma. Antiestática y muy resistente.</p>
+                    </div>
+                  </a>
+                  <div class="blog-card-body pt-0">
+                    <div class="product-price-row">
+                      <span class="service-price">$5.900</span>
+                      <span class="btn btn-lines-dark disabled">Agotado</span>
+                    </div>
                   </div>
                 </div>
               </div>
 
               <div class="col">
-                <div class="service-card">
-                  <img src="img/locion.png" alt="Loción Post-Afeitado" class="img-fluid product-card-img mb-3">
-                  <span class="service-num">05</span>
-                  <h3>Loción Post-Afeitado</h3>
-                  <p>
-                    Refresca y calma la piel irritada después del afeitado.
-                  </p>
-                  <div class="service-meta">
-                    <span class="service-price">Consultar en local</span>
+                <div class="blog-card reveal-up">
+                  <a href="tienda/index.html">
+                    <div class="blog-card-img">
+                      <img src="img/locion.png" alt="Loción Post-Afeitado" />
+                    </div>
+                    <div class="blog-card-body pb-0">
+                      <p class="blog-cat">Accesorios</p>
+                      <h4>Loción Post-Afeitado</h4>
+                      <p>Refresca y calma la piel irritada después del afeitado.</p>
+                    </div>
+                  </a>
+                  <div class="blog-card-body pt-0">
+                    <div class="product-price-row">
+                      <span class="service-price">$6.900</span>
+                      <a href="tienda/carrito.html" class="btn btn-lines-dark">Agregar</a>
+                    </div>
                   </div>
                 </div>
               </div>
+
+            </div>
+
+            <div class="text-center mt-lg reveal-up">
+              <a href="tienda/index.html" class="btn btn-lines-dark d-inline-flex">Ver todos los productos</a>
             </div>
           </div>
         </section>
@@ -432,25 +431,37 @@
         <!-- ═══════════════════════ CURSOS ═════════════════════════════ -->
         
         
-        <section id="cursos" class="brutal-section brutal-section-p0 bg-dark border-bottom-hard">
+        <section id="cursos" class="brutal-section brutal-section-p0 bg-dark border-bottom-hard s-cursos">
           <div class="pt-xl px-margin border-bottom-hard">
-            <p class="section-label reveal-up section-label reveal-up text-beige">/ Aprende con nosotros</p>
-            <h2 class="reveal-up reveal-up text-light">Cursos y Talleres</h2>
+            <p class="section-label reveal-up text-beige">/ Aprende con nosotros</p>
+            <h2 class="reveal-up text-light">Cursos y Talleres</h2>
           </div>
 
-          <a href="#" class="course-banner reveal-up">
-            <span class="course-num">01</span>
-            <h3>Iniciación a la Barbería</h3>
-            <p>Para quienes quieren dar sus primeros pasos. Fundamentos, herramientas y cortes básicos. Domina la base.</p>
-            <span class="course-arrow">→</span>
-          </a>
+          <div class="px-margin py-xl">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+              <div class="col">
+                <a href="cursos/curso-single.html" class="service-card course-card reveal-up">
+                  <span class="service-num" aria-hidden="true">01</span>
+                  <h3>Iniciación a la Barbería</h3>
+                  <p>Para quienes quieren dar sus primeros pasos. Fundamentos, herramientas y cortes básicos. Domina la base.</p>
+                  <div class="service-meta">
+                    <span class="service-price">Ver curso →</span>
+                  </div>
+                </a>
+              </div>
 
-          <a href="#" class="course-banner reveal-up">
-            <span class="course-num">02</span>
-            <h3>Perfeccionamiento Avanzado</h3>
-            <p>Dominio de tijeras, texturas y fades complejos. Lleva tus habilidades al siguiente nivel técnico.</p>
-            <span class="course-arrow">→</span>
-          </a>
+              <div class="col">
+                <a href="cursos/curso-single.html" class="service-card course-card reveal-up">
+                  <span class="service-num" aria-hidden="true">02</span>
+                  <h3>Perfeccionamiento Avanzado</h3>
+                  <p>Dominio de tijeras, texturas y fades complejos. Lleva tus habilidades al siguiente nivel técnico.</p>
+                  <div class="service-meta">
+                    <span class="service-price">Ver curso →</span>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </section>
 
         <!-- ═══════════════════════ EDUCACIÓN (Forging the Core) ══════════ -->
@@ -517,28 +528,28 @@
             <!-- Bottom 4 elements -->
             <div class="col-lg-3 bento-cell lg-border-end">
                 <div class="reveal-up">
-                  <span class="bento-num">PL</span>
+                  <span class="bento-num" aria-hidden="true">PL</span>
                   <h3>Plano</h3>
                   <p>Base en donde desarrollamos el corte. Puede situarse de forma horizontal, vertical y diagonal.</p>
                 </div>
             </div>
             <div class="col-lg-3 bento-cell lg-border-end">
                 <div class="reveal-up">
-                  <span class="bento-num">AN</span>
+                  <span class="bento-num" aria-hidden="true">AN</span>
                   <h3>Ángulos</h3>
                   <p>En peluquería trabajamos con ángulos como 0º, 45º, 90º, 135º y 180º.</p>
                 </div>
             </div>
             <div class="col-lg-3 bento-cell lg-border-end">
                 <div class="reveal-up">
-                  <span class="bento-num">EL</span>
+                  <span class="bento-num" aria-hidden="true">EL</span>
                   <h3>Elevación</h3>
                   <p>Dirección hacia donde proyectamos el cabello desde su caída natural. Controla silueta.</p>
                 </div>
             </div>
             <div class="col-lg-3 bento-cell bg-primary text-white">
                 <div class="reveal-up">
-                  <span class="bento-num text-white">LC</span>
+                  <span class="bento-num text-white" aria-hidden="true">LC</span>
                   <h3 class="text-white">Línea de Corte</h3>
                   <p class="opacity-90">Línea de diseño sólida para delimitar la estructura del corte y establecer guías.</p>
                 </div>
@@ -554,11 +565,11 @@
           <div class="pt-xl px-margin">
             <div class="row align-items-end">
               <div class="col">
-                <p class="section-label reveal-up section-label reveal-up text-beige">/ Portfolio</p>
-                <h2 class="reveal-up reveal-up text-light">Galería</h2>
+                <p class="section-label reveal-up text-beige">/ Portfolio</p>
+                <h2 class="reveal-up text-light">Galería</h2>
               </div>
               <div class="col-auto">
-                <a href="#" class="btn btn-lines d-none d-md-inline-flex">Ver Instagram</a>
+                <a href="https://instagram.com/linesbarberia" target="_blank" rel="noopener noreferrer" class="btn btn-lines d-none d-md-inline-flex">Ver Instagram</a>
               </div>
             </div>
           </div>
@@ -587,7 +598,7 @@
           </div>
 
           <div class="text-center d-md-none px-margin">
-            <a href="#" class="btn btn-lines w-100">Ver Instagram</a>
+            <a href="https://instagram.com/linesbarberia" target="_blank" rel="noopener noreferrer" class="btn btn-lines w-100">Ver Instagram</a>
           </div>
         </section>
 
@@ -599,8 +610,8 @@
                  <div class="pt-xl px-margin">
             <div class="row align-items-end">
               <div class="col">
-                <p class="section-label reveal-up section-label reveal-up ">/ Testimonios</p>
-                <h2 class="reveal-up reveal-up">Opiniones de nuestros clientes</h2>
+                <p class="section-label reveal-up">/ Testimonios</p>
+                <h2 class="reveal-up">Opiniones de nuestros clientes</h2>
               </div>
         
             </div>
@@ -616,7 +627,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-1.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Matías G.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 2 semanas</p></div>
+                  <div><p class="m-0 fw-bold">Matías G.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 2 semanas</p></div>
                 </div>
               </div>
               <div class="testi-marquee-card">
@@ -626,7 +637,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-2.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Diego V.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 1 mes</p></div>
+                  <div><p class="m-0 fw-bold">Diego V.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 1 mes</p></div>
                 </div>
               </div>
               <div class="testi-marquee-card">
@@ -636,7 +647,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-3.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Carlos M.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 3 meses</p></div>
+                  <div><p class="m-0 fw-bold">Carlos M.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 3 meses</p></div>
                 </div>
               </div>
               <!-- DUPLICATE FOR SCROLL -->
@@ -647,7 +658,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-1.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Matías G.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 2 semanas</p></div>
+                  <div><p class="m-0 fw-bold">Matías G.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 2 semanas</p></div>
                 </div>
               </div>
               <div class="testi-marquee-card">
@@ -657,7 +668,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-2.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Diego V.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 1 mes</p></div>
+                  <div><p class="m-0 fw-bold">Diego V.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 1 mes</p></div>
                 </div>
               </div>
               <div class="testi-marquee-card">
@@ -667,7 +678,7 @@
                 </div>
                 <div class="d-flex align-items-center gap-3">
                   <img class="testi-avatar-bento" src="img/profile-3.jpg" alt="Cliente" style="width:50px; height:50px; border-radius:50%; border:2px solid black; filter:grayscale(100%);">
-                  <div><p class="m-0 fw-bold">Carlos M.</p><p class="m-0 opacity-50" style="font-size:14px;">Hace 3 meses</p></div>
+                  <div><p class="m-0 fw-bold">Carlos M.</p><p class="m-0 opacity-75" style="font-size:14px;">Hace 3 meses</p></div>
                 </div>
               </div>
             </div>
@@ -741,7 +752,7 @@
             <!-- CTA Agenda -->
             <div class="col-lg-8 bento-cell lg-border-end mc-cta-cell reveal-up">
               <h2 class="mc-cta-title">¿Listo para tu próximo corte?</h2>
-              <a href="https://weibook.co/linesw17" target="_blank" class="btn btn-lines-dark d-inline-flex align-items-center mb-4">
+              <a href="https://weibook.co/linesw17" target="_blank" rel="noopener noreferrer" class="btn btn-lines d-inline-flex align-items-center mb-4">
                 Reservar hora
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
               </a>
@@ -758,7 +769,7 @@
                 <span>Sábado</span>
                 <span>10:00 – 18:00</span>
               </div>
-              <div class="mc-hour-row opacity-50">
+              <div class="mc-hour-row opacity-75">
                 <span>Domingo</span>
                 <span>Cerrado</span>
               </div>
@@ -772,14 +783,14 @@
               </div>
               <div class="mc-info-item">
                 <div class="mc-info-label">WhatsApp</div>
-                <div class="mc-info-value"><a href="https://wa.me/56912345678" target="_blank">+56 9 1234 5678</a></div>
+                <div class="mc-info-value"><a href="https://wa.me/56912345678" target="_blank" rel="noopener noreferrer">+56 9 1234 5678</a></div>
               </div>
               <div class="mc-info-item">
                 <div class="mc-info-label">Email</div>
                 <div class="mc-info-value"><a href="mailto:hola@linesbarberia.cl">hola@linesbarberia.cl</a></div>
               </div>
               <div class="mc-info-item">
-                <a href="https://instagram.com/linesbarberia" target="_blank" class="btn btn-lines-dark w-100">Síguenos en Instagram</a>
+                <a href="https://instagram.com/linesbarberia" target="_blank" rel="noopener noreferrer" class="btn btn-lines-dark w-100">Síguenos en Instagram</a>
               </div>
             </div>
             
@@ -815,7 +826,7 @@
                       <path d="M584.77,40.31c0-3.84,4.21-7.15,9.55-7.15,4.79,0,7.22,2.09,9.61,4.26.42.38,1.07.34,1.44-.09l6.48-7.49c.36-.42.31-1.03-.09-1.41-3.08-2.83-7.59-7.85-18.09-7.85-12.43,0-21.75,9.98-21.75,19.96,0,18.25,30.45,20.41,30.45,31.63,0,5.2-5.71,7.36-11.07,7.36-4.96,0-10.01-3.05-13.42-6.15-.44-.4-1.1-.35-1.47.11l-6.52,8.29c-.32.41-.29.99.1,1.35,2.87,2.67,9.57,8.86,21.81,8.86,8.47,0,23.3-4.43,23.3-19.88,0-19.9-30.33-22.68-30.33-31.81Z" />
                     </svg>
                   </div>
-                  <p class="section-label text-beige opacity-50">/ La experiencia de un buen corte</p>
+                  <p class="section-label text-beige opacity-75">/ La experiencia de un buen corte</p>
                 </div>
                 <div class="mt-5 mt-lg-0">
                   <p class="mb-2 opacity-50 text-uppercase" style="letter-spacing: 2px;">Dirección</p>
@@ -826,29 +837,29 @@
 
               <!-- Links Columns -->
               <div class="col-6 col-lg-3 offset-lg-1">
-                <p class="section-label text-beige mb-4 opacity-50">/ Navegación</p>
+                <p class="section-label text-beige mb-4 opacity-75">/ Navegación</p>
                 <ul class="brutal-footer-links list-unstyled">
-                  <li><a href="#nosotros">Nosotros</a></li>
-                  <li><a href="#barberos">Barberos</a></li>
-                  <li><a href="#servicios">Servicios</a></li>
+                  <li><a href="#about-experimental">Nosotros</a></li>
+                  <li><a href="#barberos">Equipo</a></li>
+                  <li><a href="#productos">Productos</a></li>
+                  <li><a href="#cursos">Cursos</a></li>
                   <li><a href="#galeria">Galería</a></li>
-                  <li><a href="#agenda">Agenda</a></li>
+                  <li><a href="#contacto">Agenda</a></li>
                 </ul>
               </div>
 
               <div class="col-6 col-lg-2">
-                <p class="section-label text-beige mb-4 opacity-50">/ Contenido</p>
+                <p class="section-label text-beige mb-4 opacity-75">/ Contenido</p>
                 <ul class="brutal-footer-links list-unstyled">
                   <li><a href="blog/index.html">Blog</a></li>
-                  <li><a href="blog/index.html#tecnica">Técnica</a></li>
-                  <li><a href="blog/index.html#productos">Productos</a></li>
-                  <li><a href="blog/index.html#tendencias">Tendencias</a></li>
+                  <li><a href="tienda/index.html">Tienda</a></li>
+                  <li><a href="cursos/index.html">Cursos y talleres</a></li>
                 </ul>
               </div>
 
               <div class="col-12 col-lg-1 d-flex align-items-end justify-content-lg-end mt-4 mt-lg-0">
                  <!-- Instagram Button -->
-                 <a href="https://instagram.com/linesbarberia" target="_blank" class="btn btn-lines ig-circle-btn reveal-up">
+                 <a href="https://instagram.com/linesbarberia" target="_blank" rel="noopener noreferrer" class="btn btn-lines ig-circle-btn reveal-up">
                    <svg viewBox="0 0 24 24">
                       <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                    </svg>
@@ -872,11 +883,11 @@
 
     <!-- ═══════════════════════ SCRIPTS ════════════════════════════════ -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollSmoother.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollToPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollSmoother.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/ScrollToPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/SplitText.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/DrawSVGPlugin.min.js"></script>
     <script type="module" src="main.js"></script>
   </body>
